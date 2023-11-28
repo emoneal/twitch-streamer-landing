@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>FlexieUwU's Stream</title>
+        <title>FlexieUwU&apos;s Stream</title>
       </Head>
       <Navbar />
       <main className="container pt-16 mx-auto p-2 max-w-5xl">
