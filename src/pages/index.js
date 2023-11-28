@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
+import Image from 'next/image'
 import Navbar from '../components/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons';
@@ -22,7 +23,7 @@ export default function Home() {
       <Navbar />
       <main className="container pt-16 mx-auto p-2 max-w-5xl">
         <section id="profile-picture" className="flex justify-center">
-          <img src="/profile.jpg" alt="Profile" className="rounded-full h-56 w-56 object-cover" />
+          <Image src="/profile.jpg" alt="Profile Pic" className="rounded-full h-56 w-56 object-cover" />
         </section>
         <section id="bio">
           <BioSection />
