@@ -9,6 +9,7 @@ import StreamSchedule from 'src/components/StreamSchedule';
 import TopClipsCarousel from '../components/TopClipsCarousel'; // Import the TopClipsCarousel component
 
 import '../app/globals.css';
+import '../app/output.css';
 
 export default function Home() {
   useEffect(() => {
