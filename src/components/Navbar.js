@@ -4,20 +4,20 @@ const Navbar = () => {
   const [hideNavbar, setHideNavbar] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const controlNavbar = () => {
-    if (typeof window !== 'undefined') {
-      if (window.scrollY > lastScrollY) {
-        // Scrolling down
-        setHideNavbar(true);
-      } else {
-        // Scrolling up
-        setHideNavbar(false);
-      }
-      setLastScrollY(window.scrollY);
-    }
-  };
-
   useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        if (window.scrollY > lastScrollY) {
+          // Scrolling down
+          setHideNavbar(true);
+        } else {
+          // Scrolling up
+          setHideNavbar(false);
+        }
+        setLastScrollY(window.scrollY);
+      }
+    };
+
     window.addEventListener('scroll', controlNavbar);
 
     return () => window.removeEventListener('scroll', controlNavbar);
