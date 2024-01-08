@@ -27,18 +27,20 @@ export default function StreamSchedule() {
   };
 
   return (
-    <div id="schedule" className="bg-gray-900 text-gray-200 px-64 py-4 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-4 text-purple-500 text-center">Stream Schedule (EST)</h2>
-        <ul className="space-y-2">
-            {schedule.map((item, index) => (
-                <li key={index} className="flex justify-between items-center text-center">
-                    <span className="text-lg font-medium">{item.day}</span>
-                    <span className={`font-semibold ${item.time !== 'OFF' ? 'text-purple-400' : ''}`}>
-                        {convertToLocaleTime(item.time)}
-                    </span>
-                </li>
-        ))}
-        </ul>
-  </div>
+    <div className="container mx-auto p-4">
+      <div id="schedule" className="bg-gray-900 text-gray-200 px-64 py-4 rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold mb-4 text-purple-500 text-center">Stream Schedule <br /><em>(converted to your local time)</em></h2>
+          <ul className="space-y-2">
+              {schedule.map((item, index) => (
+                  <li key={index} className="flex justify-between items-center text-center">
+                      <span className="text-lg font-medium">{item.day}</span>
+                      <span className={`font-semibold ${item.time !== 'OFF' ? 'text-purple-400' : ''}`}>
+                          {convertToLocaleTime(item.time)}
+                      </span>
+                  </li>
+          ))}
+          </ul>
+      </div>
+    </div>
   );
 }

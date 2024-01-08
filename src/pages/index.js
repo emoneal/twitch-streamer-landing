@@ -20,9 +20,21 @@ export default function Home() {
     <div>
       <Head>
         <title>Welcome to PixelCafe!</title>
+        <meta 
+          name="description" 
+          content="PixelCafe is a gaming and live streaming community. Join us for live streams, top clips, and more in the world of gaming." 
+        />
+        <meta 
+          name="keywords" 
+          content="Pixel, VTuber, gaming, MMORPGs, simulation games, virtual companion, interactive entertainment, humor, authenticity, community, lovebird, creativity, passion, virtual odyssey, virtual world, streaming, VR, VR Gaming, NES, online streaming, MMORPG adventures, simulation game strategy, story-rich environments, laughter, camaraderie, engaging streamers, charismatic streamers, unique blend, content creation, building a community, memories, endless discovery, virtual playground, online gaming, gaming adventures, gaming community, online community, digital world" 
+        />
+        <meta 
+          name="viewport" 
+          content="width=device-width, initial-scale=1" 
+        />
       </Head>
       <Navbar />
-      <main className="container pt-16 mx-auto p-2 max-w-5xl">
+      <main className="container mx-auto pt-20 p-4 max-w-5xl">
         <section id="profile-picture" className="flex justify-center">
           <Image src="/profile.jpg" 
             alt="Profile Pic" 
