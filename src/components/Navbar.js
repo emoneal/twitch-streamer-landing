@@ -42,7 +42,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center">
         <a href="#" className="font-bold text-purple-500">
-          FlexieUwU
+          PixelCafeVT
         </a>
         <div className="space-x-4">
           <a onClick={() => smoothScroll('stream')} className="hover:text-purple-300 cursor-pointer">

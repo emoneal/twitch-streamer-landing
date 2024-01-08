@@ -5,11 +5,11 @@ export default function StreamSchedule() {
   const schedule = [
     { day: "Monday", time: "OFF" },
     { day: "Tuesday", time: "OFF" },
-    { day: "Wednesday", time: "OFF" },
-    { day: "Thursday", time: "10:00 - 14:00" },
-    { day: "Friday", time: "10:00 - 14:00" },
-    { day: "Saturday", time: "10:00 - 14:00" },
-    { day: "Sunday", time: "10:00 - 14:00" },
+    { day: "Wednesday", time: "11:00 - 15:00" },
+    { day: "Thursday", time: "11:00 - 15:00" },
+    { day: "Friday", time: "11:00 - 15:00" },
+    { day: "Saturday", time: "11:00 - 15:00" },
+    { day: "Sunday", time: "11:00 - 15:00" },
   ];
 
   const convertToLocaleTime = (time) => {

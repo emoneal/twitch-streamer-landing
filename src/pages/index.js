@@ -19,12 +19,17 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>FlexieUwU&apos;s Stream</title>
+        <title>Welcome to PixelCafe!</title>
       </Head>
       <Navbar />
       <main className="container pt-16 mx-auto p-2 max-w-5xl">
         <section id="profile-picture" className="flex justify-center">
-          <Image src="/profile.jpg" alt="Profile Pic" className="rounded-full h-56 w-56 object-cover" />
+          <Image src="/profile.jpg" 
+            alt="Profile Pic" 
+            className="rounded-full h-56 w-56 object-cover" 
+            width={500}
+            height={300}  
+          />
         </section>
         <section id="bio">
           <BioSection />
@@ -37,7 +42,7 @@ export default function Home() {
               <div className="w-full md:w-2/3 pr-4">
                 <iframe
                   className="w-full h-96"
-                  src="https://player.twitch.tv/?channel=flexieuwu&parent=flexie.moe"
+                  src="https://player.twitch.tv/?channel=pixelcafevt&parent=pixelcafe.moe"
                   allowFullScreen
                 ></iframe>
               </div>
@@ -45,7 +50,7 @@ export default function Home() {
               <div className="w-full md:w-1/3">
                 <iframe
                   className="w-full h-96"
-                  src="https://www.twitch.tv/embed/flexieuwu/chat?parent=flexie.moe"
+                  src="https://www.twitch.tv/embed/pixelcafevt/chat?parent=pixelcafe.moe"
                 ></iframe>
               </div>
             </div>
@@ -67,16 +72,16 @@ export default function Home() {
       </main>
       <footer className="bg-gray-800 text-gray-300 py-4 sticky bottom-0">
         <div className="container mx-auto px-4 text-center flex justify-center space-x-4">
-          <a href="http://www.twitch.tv/flexieuwu" className="hover:text-purple-300">
+          <a href="http://www.twitch.tv/pixelcafevt" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faTwitch} />
           </a>
-          <a href="http://www.youtube.com/flexieuwu" className="hover:text-purple-300">
+          <a href="http://www.youtube.com/@pixelcafevt" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faYoutube} />
           </a>
-          <a href="http://www.x.com/flexieuwu" className="hover:text-purple-300">
+          <a href="http://www.x.com/pixelcafevt" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faXTwitter} /> {/* Replace with appropriate icon */}
           </a>
-          <a href="https://www.tiktok.com/@flexieuwu" className="hover:text-purple-300">
+          <a href="https://www.tiktok.com/@pixelcafevt" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faTiktok} />
           </a>
           <a href="https://discord.gg/TbGuUFV2HT" className="hover:text-purple-300">
