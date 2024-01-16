@@ -8,10 +8,8 @@ const Navbar = () => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
         if (window.scrollY > lastScrollY) {
-          // Scrolling down
           setHideNavbar(true);
         } else {
-          // Scrolling up
           setHideNavbar(false);
         }
         setLastScrollY(window.scrollY);
@@ -19,9 +17,14 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', controlNavbar);
-
     return () => window.removeEventListener('scroll', controlNavbar);
   }, [lastScrollY]);
+
+  // Define the smoothScroll function
+  const smoothScroll = (id) => {
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <nav
@@ -34,14 +37,17 @@ const Navbar = () => {
           PixelCafeVT
         </a>
         <div className="space-x-4">
-          <a onClick={() => smoothScroll('stream')} className="hover:text-purple-300 cursor-pointer">
-            Stream
-          </a>
-          <a onClick={() => smoothScroll('bio')} className="hover:text-purple-300 cursor-pointer">
+        <a onClick={() => smoothScroll('bio')} className="hover:text-purple-300 cursor-pointer">
             About
           </a>
           <a onClick={() => smoothScroll('schedule')} className="hover:text-purple-300 cursor-pointer">
             Schedule
+          </a>
+          <a onClick={() => smoothScroll('stream')} className="hover:text-purple-300 cursor-pointer">
+            Stream
+          </a>
+          <a onClick={() => smoothScroll('top-clips')} className="hover:text-purple-300 cursor-pointer">
+            Clips
           </a>
         </div>
       </div>

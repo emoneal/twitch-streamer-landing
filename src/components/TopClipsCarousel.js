@@ -13,7 +13,8 @@ const TopClipsCarousel = () => {
         const response = await fetch(`/api/top-clips?page=${currentPage}&perPage=${clipsPerPage}`);
         if (response.ok) {
           const clips = await response.json();
-          setTopClipsData((prevData) => [...prevData, ...clips]);
+          const sortedClips = clips.sort((a, b) => b.view_count - a.view_count);
+          setTopClipsData((prevData) => [...prevData, ...sortedClips]);
         } else {
           throw new Error('Failed to fetch top clips');
         }
