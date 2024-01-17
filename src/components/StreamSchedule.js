@@ -13,12 +13,15 @@ export default function StreamSchedule() {
   ];
 
   const convertToLocaleTime = (time, day) => {
-    if (time === "OFF") return { time: "OFF", day };
-
+    if (time === "OFF") {
+      const localDay = moment.tz(day, 'dddd', 'America/New_York').tz(moment.tz.guess()).format('dddd');
+      return { time: "OFF", day: localDay };
+    }
+  
     const [startTime, endTime] = time.split(" - ");
     const convertedStartTime = convertTime(startTime, day);
     const convertedEndTime = convertTime(endTime, day);
-
+  
     if (convertedStartTime.day !== convertedEndTime.day) {
       return {
         time: `${convertedStartTime.time} - ${convertedEndTime.time}`,
@@ -31,6 +34,10 @@ export default function StreamSchedule() {
       };
     }
   };
+  
+  
+  
+  
 
   const convertTime = (time, day) => {
     const format = 'HH:mm';
@@ -83,7 +90,12 @@ export default function StreamSchedule() {
         const nextStreamStart = moment.tz(`${nextDay} ${startTime}`, `dddd HH:mm`, 'America/New_York').tz(moment.tz.guess());
         if (now.isBefore(nextStreamStart)) {
           const duration = moment.duration(nextStreamStart.diff(now));
-          return `Next Stream In: ${duration.days()}d ${duration.hours()}h ${duration.minutes()}m ${duration.seconds()}s`;
+          return (
+            <div>
+              Next Stream In: <br />
+              {duration.days()}d {duration.hours()}h {duration.minutes()}m {duration.seconds()}s
+            </div>
+          );
         }
       }
     }
