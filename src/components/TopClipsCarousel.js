@@ -13,8 +13,10 @@ const TopClipsCarousel = () => {
         const response = await fetch(`/api/top-clips?page=${currentPage}&perPage=${clipsPerPage}`);
         if (response.ok) {
           const clips = await response.json();
-          const sortedClips = clips.sort((a, b) => b.view_count - a.view_count);
-          setTopClipsData((prevData) => [...prevData, ...sortedClips]);
+          setTopClipsData((prevData) => {
+              const combinedData = [...prevData, ...clips];
+              return combinedData.sort((a, b) => b.view_count - a.view_count);
+          });
         } else {
           throw new Error('Failed to fetch top clips');
         }
@@ -29,6 +31,16 @@ const TopClipsCarousel = () => {
   const handlePageChange = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
+
+  const [activeClip, setActiveClip] = useState(null);
+
+  const handleThumbnailClick = (clipId, event) => {
+    event.preventDefault(); // Prevent default action
+    event.stopPropagation(); // Stop event from propagating to carousel
+    setActiveClip(clipId);
+};
+
+
 
   return (
     <div className="container mx-auto p-4">
@@ -46,15 +58,33 @@ const TopClipsCarousel = () => {
       >
         {topClipsData.map((clip, index) => (
           <div key={index} className="flex justify-center items-center w-full">
-            <iframe
-              src={`https://clips.twitch.tv/embed?clip=${clip.id}&parent=pixelcafe.moe`}
-              title={`Top Clip ${index + 1}`}
-              allowFullScreen
-              className="w-full"
-              style={{ height: '500px' }}
-            ></iframe>
+            {activeClip === clip.id ? (
+              <iframe
+                src={`https://clips.twitch.tv/embed?clip=${clip.id}&parent=pixelcafe.moe&autoplay=true`}
+                title={`Top Clip ${index + 1}`}
+                allowFullScreen
+                className="w-full"
+                style={{ height: '500px' }}
+              ></iframe>
+            ) : (
+
+<div key={index} className="flex justify-center items-center w-full">
+  <div className="clip-thumbnail-wrapper" onClick={(e) => handleThumbnailClick(clip.id, e)}>
+    <img
+      src={clip.thumbnail_url}
+      alt={`Clip ${index + 1}`}
+      className="w-full h-full"
+    />
+    <div className="clip-title">{clip.title}</div>
+    <div className="play-button" style={{ backgroundColor: 'transparent' }}>▶</div>
+  </div>
+</div>
+            )}
           </div>
         ))}
+
+
+
       </Carousel>
     </div>
   );

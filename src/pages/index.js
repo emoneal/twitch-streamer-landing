@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image'
 import Navbar from '../components/Navbar';
@@ -17,6 +17,26 @@ export default function Home() {
     window.scrollTo(0, 0);
   }, []);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check the window size when the component mounts
+    const checkWindowSize = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+    };
+
+    // Add an event listener for window size changes
+    window.addEventListener('resize', checkWindowSize);
+
+    // Initial check when the component mounts
+    checkWindowSize();
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', checkWindowSize);
+    };
+  }, []);
+
   return (
     <div>
       <Head>
@@ -33,38 +53,45 @@ export default function Home() {
           name="viewport" 
           content="width=device-width, initial-scale=1" 
         />
+        <meta property="og:image" content="/ogpixelcafe.png"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
       </Head>
       <Navbar />
         <FullScreenImage />
       <main className="container mx-auto pt-20 p-4">
-        <section id="bio">
+        <section id="bio" className="flex justify-center items-center">
           <ProfileAndBio />
         </section>
         <section id="schedule">
           <StreamSchedule />
         </section>
-        <section id="stream" className="bg-gray-900 text-white py-8 my-6 rounded-lg">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-4 text-center">Live Stream</h2>
-            <div className="max-w-6xl mx-auto flex flex-wrap">
-              {/* Twitch stream player */}
-              <div className="w-full md:w-2/3 pr-4">
-                <iframe
-                  className="w-full h-96"
-                  src="https://player.twitch.tv/?channel=pixelcafevt&parent=pixelcafe.moe"
-                  allowFullScreen
-                ></iframe>
-              </div>
-              {/* Twitch chat */}
-              <div className="w-full md:w-1/3">
-                <iframe
-                  className="w-full h-96"
-                  src="https://www.twitch.tv/embed/pixelcafevt/chat?parent=pixelcafe.moe"
-                ></iframe>
+        {!isMobile && (
+          <section id="stream" className="bg-gray-900 text-white py-8 my-6 rounded-lg">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold mb-4 text-center">Live Stream</h2>
+              <div className="max-w-6xl mx-auto flex flex-wrap">
+                {/* Twitch stream player */}
+                <div className="w-full md:w-2/3 pr-4">
+                  {/* Render the live stream player */}
+                  <iframe
+                    className="w-full h-96"
+                    src="https://player.twitch.tv/?channel=pixelcafevt&parent=pixelcafe.moe"
+                    allowFullScreen
+                    loading="lazy"
+                  ></iframe>
+                </div>
+                {/* Twitch chat */}
+                <div className="w-full md:w-1/3">
+                  <iframe
+                    className="w-full h-96"
+                    src="https://www.twitch.tv/embed/pixelcafevt/chat?parent=pixelcafe.moe"
+                    loading="lazy"
+                  ></iframe>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
         {/* Use the TopClipsCarousel component here */}
         <section id="top-clips" className="bg-gray-900 text-white py-8 my-6 rounded-lg">
           <div className="container mx-auto px-4">

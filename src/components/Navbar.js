@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Navbar = () => {
+const Navbar = ({ isMobile }) => {
   const [hideNavbar, setHideNavbar] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -43,9 +43,17 @@ const Navbar = () => {
           <a onClick={() => smoothScroll('schedule')} className="hover:text-purple-300 cursor-pointer">
             Schedule
           </a>
-          <a onClick={() => smoothScroll('stream')} className="hover:text-purple-300 cursor-pointer">
-            Stream
-          </a>
+          {isMobile ? (
+            // Render a link to your Twitch page when on mobile
+            <a href="https://www.twitch.tv/pixelcafevt" target="_blank" rel="noopener noreferrer" className="hover:text-purple-300">
+              Twitch
+            </a>
+          ) : (
+            // Render a link to the stream section when not on mobile
+            <a onClick={() => smoothScroll('stream')} className="hover:text-purple-300 cursor-pointer">
+              Stream
+            </a>
+          )}
           <a onClick={() => smoothScroll('top-clips')} className="hover:text-purple-300 cursor-pointer">
             Clips
           </a>
