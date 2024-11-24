@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image'
+
+
 
 const Navbar = ({ isMobile }) => {
   const [hideNavbar, setHideNavbar] = useState(false);
@@ -33,8 +36,8 @@ const Navbar = ({ isMobile }) => {
       }`}
     >
       <div className="container mx-auto flex justify-between items-center">
-        <a href="#" className="font-bold text-purple-500">
-          PixelCafeVT
+      <a onClick={() => smoothScroll('#')} className="hover:text-purple-300 cursor-pointer">
+        <Image src='/smallsitelogo.png' alt="Logo" width={150} height={40} onClick={() => smoothScroll('home')} />
         </a>
         <div className="space-x-4">
         <a onClick={() => smoothScroll('bio')} className="hover:text-purple-300 cursor-pointer">
@@ -45,7 +48,7 @@ const Navbar = ({ isMobile }) => {
           </a>
           {isMobile ? (
             // Render a link to your Twitch page when on mobile
-            <a href="https://www.twitch.tv/pixelcafevt" target="_blank" rel="noopener noreferrer" className="hover:text-purple-300">
+            <a href="https://www.twitch.tv/pixelemii" target="_blank" rel="noopener noreferrer" className="hover:text-purple-300">
               Twitch
             </a>
           ) : (
@@ -54,6 +57,10 @@ const Navbar = ({ isMobile }) => {
               Stream
             </a>
           )}
+          <a onClick={() => smoothScroll('youtube')} className="hover:text-purple-300 cursor-pointer">
+            YouTube
+          </a>
+
           <a onClick={() => smoothScroll('top-clips')} className="hover:text-purple-300 cursor-pointer">
             Clips
           </a>

@@ -1,15 +1,15 @@
 import moment from 'moment-timezone';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function StreamSchedule() {
   const schedule = [
-    { day: "Monday", time: "11:00 - 15:00" },
-    { day: "Tuesday", time: "OFF" },
+    { day: "Monday", time: "OFF" },
+    { day: "Tuesday", time: "11:00 - 17:00" },
     { day: "Wednesday", time: "OFF" },
-    { day: "Thursday", time: "11:00 - 15:00" },
-    { day: "Friday", time: "11:00 - 15:00" },
+    { day: "Thursday", time: "11:00 - 17:00" },
+    { day: "Friday", time: "11:00 - 17:00" },
     { day: "Saturday", time: "OFF" },
-    { day: "Sunday", time: "11:00 - 15:00" },
+    { day: "Sunday", time: "OFF" },
   ];
 
   const convertToLocaleTime = (time, day) => {
@@ -34,10 +34,6 @@ export default function StreamSchedule() {
       };
     }
   };
-  
-  
-  
-  
 
   const convertTime = (time, day) => {
     const format = 'HH:mm';
@@ -49,100 +45,125 @@ export default function StreamSchedule() {
     };
   };
 
-  const [statusMessage, setStatusMessage] = useState('');
+  const [nextStreamTime, setNextStreamTime] = useState(null);
+  const divRefs = useRef([]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const currentStatus = getCurrentStreamStatus();
-      setStatusMessage(currentStatus);
+      const nextTime = getNextStreamStart();
+      setNextStreamTime(nextTime);
     }, 1000);
 
     return () => clearInterval(timer);
   }, []);
 
-  const getCurrentStreamStatus = () => {
+  const getNextStreamStart = () => {
     const now = moment();
     const today = now.format('dddd');
-    const scheduleItem = schedule.find(item => item.day === today);
 
-    if (scheduleItem && scheduleItem.time !== 'OFF') {
-      const [startTime, endTime] = scheduleItem.time.split(' - ');
-      const startMoment = moment.tz(`${today} ${startTime}`, `dddd HH:mm`, 'America/New_York').tz(moment.tz.guess());
-      const endMoment = moment.tz(`${today} ${endTime}`, `dddd HH:mm`, 'America/New_York').tz(moment.tz.guess());
+    // Find the current day's schedule
+    const todaySchedule = schedule.find(item => item.day === today && item.time !== 'OFF');
 
-      if (now.isBetween(startMoment, endMoment)) {
-        return 'Currently Live!';
-      } else {
-        return getNextStreamCountdown(now);
-      }
-    } else {
-      return getNextStreamCountdown(now);
-    }
-  };
+    if (todaySchedule) {
+      const [startTime, ] = todaySchedule.time.split(' - ');
+      const [startHour, startMinute] = startTime.split(':');
+      const startMoment = moment().hour(parseInt(startHour)).minute(parseInt(startMinute));
 
-  const getNextStreamCountdown = (now) => {
-    for (let i = 0; i < 7; i++) {
-      const nextDay = now.clone().add(i, 'days').format('dddd');
-      const scheduleItem = schedule.find(item => item.day === nextDay && item.time !== 'OFF');
-
-      if (scheduleItem) {
-        const [startTime, ] = scheduleItem.time.split(' - ');
-        const nextStreamStart = moment.tz(`${nextDay} ${startTime}`, `dddd HH:mm`, 'America/New_York').tz(moment.tz.guess());
-        if (now.isBefore(nextStreamStart)) {
-          const duration = moment.duration(nextStreamStart.diff(now));
-          return (
-            <div>
-              Next Stream In: <br />
-              {duration.days()}d {duration.hours()}h {duration.minutes()}m {duration.seconds()}s
-            </div>
-          );
-        }
+      // If the current time is before the start of today's stream
+      if (now.isBefore(startMoment)) {
+        return startMoment;
       }
     }
-    return 'No upcoming streams scheduled.';
+
+    // Find the next scheduled stream after today
+    const nextScheduledDay = schedule.find(item => moment().isoWeekday(item.day).isAfter(now) && item.time !== 'OFF');
+
+    if (nextScheduledDay) {
+      const [nextStartTime, ] = nextScheduledDay.time.split(' - ');
+      const [nextStartHour, nextStartMinute] = nextStartTime.split(':');
+      return moment().isoWeekday(nextScheduledDay.day).hour(parseInt(nextStartHour)).minute(parseInt(nextStartMinute));
+    }
+
+    return null;
   };
 
-  const twitchChannelUrl = "http://www.twitch.tv/pixelcafevt";
+  const renderNextStreamTimer = () => {
+    const now = moment();
 
-  const renderLiveStatus = () => {
-    if (statusMessage === 'Currently Live!') {
+    // Check if the current time falls within any of the stream time intervals
+    const isCurrentlyLive = schedule.some(item => {
+      if (item.time === "OFF") return false;
+
+      const [startTime, endTime] = item.time.split(' - ');
+      const [startHour, startMinute] = startTime.split(':');
+      const [endHour, endMinute] = endTime.split(':');
+      const streamStart = moment().isoWeekday(item.day).hour(parseInt(startHour)).minute(parseInt(startMinute));
+      const streamEnd = moment().isoWeekday(item.day).hour(parseInt(endHour)).minute(parseInt(endMinute));
+
+      return now.isBetween(streamStart, streamEnd);
+    });
+
+    if (isCurrentlyLive) {
       return (
-        <a href={twitchChannelUrl} target="_blank" rel="noopener noreferrer" className="flashing-text">
-          <p className="text-xl text-center my-4 font-bold mb-4 text-purple-500 italic flashing-text">
-            {statusMessage}
-          </p>
+        <a href="http://www.twitch.tv/pixelcafevt" target="_blank" rel="noopener noreferrer" className="text-lg md:text-xl text-center my-2 font-bold text-purple-500 italic block animate-pulse">
+          Currently Live!
         </a>
       );
+    } else if (nextStreamTime) {
+      const duration = moment.duration(nextStreamTime.diff(now));
+      const days = duration.days() ? `${duration.days()}d ` : '';
+      const hours = duration.hours() ? `${duration.hours()}h ` : '';
+      const minutes = duration.minutes() ? `${duration.minutes()}m ` : '';
+      const seconds = duration.seconds() ? `${duration.seconds()}s` : '';
+
+      const timeText = `${days}${hours}${minutes}${seconds}`;
+
+      return (
+        <div className="text-lg md:text-xl text-center my-2 font-bold text-purple-500 italic block">
+          Next Stream In: <br />
+          {timeText}
+        </div>
+      );
     } else {
       return (
-        <p className="text-xl text-center my-4 font-bold mb-4 text-purple-500 italic">
-          {statusMessage}
-        </p>
+        <div className="text-lg md:text-xl text-center my-2 font-bold text-purple-500 italic block">
+          No future streams scheduled.
+        </div>
       );
     }
   };
 
+  // Get the maximum width of the divs
+  useEffect(() => {
+    const maxWidth = Math.max(...divRefs.current.map(ref => ref.offsetWidth));
+    divRefs.current.forEach(ref => ref.style.width = `${maxWidth}px`);
+  }, []);
+
   return (
-    <div className="container mx-auto p-4">
-      <div id="schedule" className="bg-gray-900 text-gray-200 py-4 rounded-lg shadow-lg max-w-full">
-        <h2 className="text-2xl font-bold mb-4 text-purple-500 text-center">
+    <div className="container mx-auto px-4 py-6">
+      <div id="schedule" className="bg-gray-900 text-gray-200 py-4 rounded-lg shadow-lg">
+        <h2 className="text-xl md:text-2xl font-bold mb-4 text-purple-500 text-center">
           Stream Schedule <br /><em>(converted to your local time)</em>
         </h2>
-        <ul className="space-y-2">
+        <div className="text-center">
           {schedule.map((item, index) => {
             const converted = convertToLocaleTime(item.time, item.day);
             return (
-              <li key={index} className="flex justify-between items-center px-8 md:px-64 text-center">
-                <span className="text-lg font-medium">{converted.day}</span>
-                <span className={`font-semibold ${item.time !== 'OFF' ? 'text-purple-400' : ''}`}>
-                  {converted.time}
-                </span>
-              </li>
+              <div key={index} className="text-lg md:text-xl text-center my-2">
+                <div ref={el => divRefs.current[index] = el} className="bg-gray-800 rounded-md p-4 inline-block">
+                  <span className="font-medium block">{converted.day}</span>
+                  <span className={`font-semibold block ${item.time !== 'OFF' ? 'text-purple-400' : ''}`}>
+                    {converted.time}
+                  </span>
+                </div>
+              </div>
             );
           })}
-        </ul>
-        <div className="container mx-auto p-4">
-          {renderLiveStatus()}
+        </div>
+        <div className="container mx-auto px-4">
+          {renderNextStreamTimer()}
+          <br />
+          <p>New Videos every Monday and Saturday!</p>
         </div>
       </div>
     </div>
