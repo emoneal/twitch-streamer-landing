@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import FullScreenImage from 'src/components/FullScreenImage'
 import ProfileAndBio from 'src/components/ProfileAndBio';
 import StreamSchedule from 'src/components/StreamSchedule';
@@ -118,6 +118,9 @@ export default function Home() {
           </a>
           <a href="https://www.tiktok.com/@pixelemii" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faTiktok} />
+          </a>
+          <a href="https://www.instagram.com/pixelemii" className="hover:text-purple-300">
+            <FontAwesomeIcon icon={faInstagram} />
           </a>
           <a href="https://discord.gg/TbGuUFV2HT" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faDiscord} />
