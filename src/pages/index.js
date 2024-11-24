@@ -107,13 +107,13 @@ export default function Home() {
       </main>
       <footer className="sticky bottom-0 bg-gray-800 text-gray-300 py-4">
         <div className="container mx-auto px-4 text-center flex justify-center space-x-4">
-          <a href="http://www.twitch.tv/pixelemii" className="hover:text-purple-300">
+          <a href="https://www.twitch.tv/pixelemii" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faTwitch} />
           </a>
-          <a href="http://www.youtube.com/@pixelemii" className="hover:text-purple-300">
+          <a href="https://www.youtube.com/@pixelemii" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faYoutube} />
           </a>
-          <a href="http://www.x.com/pixelemii" className="hover:text-purple-300">
+          <a href="https://www.x.com/pixelemii" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faXTwitter} /> {/* Replace with appropriate icon */}
           </a>
           <a href="https://www.tiktok.com/@pixelemii" className="hover:text-purple-300">
