@@ -12,111 +12,89 @@ export default function StreamSchedule() {
     { day: "Sunday", time: "OFF" },
   ];
 
-  const convertToLocaleTime = (time, day) => {
-    if (time === "OFF") {
-      const localDay = moment.tz(day, 'dddd', 'America/New_York').tz(moment.tz.guess()).format('dddd');
-      return { time: "OFF", day: localDay };
-    }
-  
-    const [startTime, endTime] = time.split(" - ");
-    const convertedStartTime = convertTime(startTime, day);
-    const convertedEndTime = convertTime(endTime, day);
-  
-    if (convertedStartTime.day !== convertedEndTime.day) {
-      return {
-        time: `${convertedStartTime.time} - ${convertedEndTime.time}`,
-        day: `${convertedStartTime.day} - ${convertedEndTime.day}`
-      };
-    } else {
-      return {
-        time: `${convertedStartTime.time} - ${convertedEndTime.time}`,
-        day: convertedStartTime.day
-      };
-    }
-  };
-
-  const convertTime = (time, day) => {
-    const format = 'HH:mm';
-    const timezone = 'America/New_York'; // EST timezone
-    const localTime = moment.tz(`${day} ${time}`, `dddd ${format}`, timezone).clone().tz(moment.tz.guess());
-    return {
-      time: localTime.format('h:mm A'), // Format to 12-hour time with AM/PM
-      day: localTime.format('dddd') // Get the day of the week
-    };
-  };
-
+  const [localizedSchedule, setLocalizedSchedule] = useState([]);
   const [nextStreamTime, setNextStreamTime] = useState(null);
   const divRefs = useRef([]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      const nextTime = getNextStreamStart();
-      setNextStreamTime(nextTime);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const getNextStreamStart = () => {
-    const now = moment();
-    const today = now.format('dddd');
-
-    // Find the current day's schedule
-    const todaySchedule = schedule.find(item => item.day === today && item.time !== 'OFF');
-
-    if (todaySchedule) {
-      const [startTime, ] = todaySchedule.time.split(' - ');
-      const [startHour, startMinute] = startTime.split(':');
-      const startMoment = moment().hour(parseInt(startHour)).minute(parseInt(startMinute));
-
-      // If the current time is before the start of today's stream
-      if (now.isBefore(startMoment)) {
-        return startMoment;
+    const convertToLocaleTime = (time, day) => {
+      if (time === "OFF") {
+        return null; // Exclude "OFF" days from the schedule
       }
-    }
 
-    // Find the next scheduled stream after today
-    const nextScheduledDay = schedule.find(item => moment().isoWeekday(item.day).isAfter(now) && item.time !== 'OFF');
+      const [startTime, endTime] = time.split(" - ");
+      const convertedStartTime = convertTime(startTime, day);
+      const convertedEndTime = convertTime(endTime, day);
 
-    if (nextScheduledDay) {
-      const [nextStartTime, ] = nextScheduledDay.time.split(' - ');
-      const [nextStartHour, nextStartMinute] = nextStartTime.split(':');
-      return moment().isoWeekday(nextScheduledDay.day).hour(parseInt(nextStartHour)).minute(parseInt(nextStartMinute));
-    }
+      if (convertedStartTime.day !== convertedEndTime.day) {
+        return {
+          time: `${convertedStartTime.time} - ${convertedEndTime.time}`,
+          day: `${convertedStartTime.day} - ${convertedEndTime.day}`,
+        };
+      } else {
+        return {
+          time: `${convertedStartTime.time} - ${convertedEndTime.time}`,
+          day: convertedStartTime.day,
+        };
+      }
+    };
 
-    return null;
-  };
+    const convertTime = (time, day) => {
+      const timezone = "America/New_York"; // EST timezone
+      const localTime = moment.tz(`${day} ${time}`, `dddd HH:mm`, timezone).clone().tz(moment.tz.guess());
+      return {
+        time: localTime.format("h:mm A"), // Format to 12-hour time with AM/PM
+        day: localTime.format("dddd"), // Get the day of the week
+      };
+    };
+
+    const getLocalizedSchedule = () => {
+      return schedule
+        .map(item => convertToLocaleTime(item.time, item.day))
+        .filter(item => item !== null); // Filter out "OFF" days
+    };
+
+    const getNextStreamStart = () => {
+      const now = moment();
+
+      for (let i = 0; i < 7; i++) {
+        const nextDay = now.clone().add(i, "days").format("dddd");
+        const scheduleItem = schedule.find(item => item.day === nextDay && item.time !== "OFF");
+
+        if (scheduleItem && scheduleItem.time !== "OFF") {
+          const [startTime] = scheduleItem.time.split(" - ");
+          const [startHour, startMinute] = startTime.split(":");
+          const streamStart = now
+            .clone()
+            .add(i, "days")
+            .hour(parseInt(startHour))
+            .minute(parseInt(startMinute))
+            .second(0);
+
+          if (streamStart.isAfter(now)) {
+            return streamStart;
+          }
+        }
+      }
+
+      return null; // No future streams scheduled
+    };
+
+    setLocalizedSchedule(getLocalizedSchedule());
+    setNextStreamTime(getNextStreamStart());
+  }, []);
 
   const renderNextStreamTimer = () => {
     const now = moment();
 
-    // Check if the current time falls within any of the stream time intervals
-    const isCurrentlyLive = schedule.some(item => {
-      if (item.time === "OFF") return false;
-
-      const [startTime, endTime] = item.time.split(' - ');
-      const [startHour, startMinute] = startTime.split(':');
-      const [endHour, endMinute] = endTime.split(':');
-      const streamStart = moment().isoWeekday(item.day).hour(parseInt(startHour)).minute(parseInt(startMinute));
-      const streamEnd = moment().isoWeekday(item.day).hour(parseInt(endHour)).minute(parseInt(endMinute));
-
-      return now.isBetween(streamStart, streamEnd);
-    });
-
-    if (isCurrentlyLive) {
-      return (
-        <a href="http://www.twitch.tv/pixelcafevt" target="_blank" rel="noopener noreferrer" className="text-lg md:text-xl text-center my-2 font-bold text-purple-500 italic block animate-pulse">
-          Currently Live!
-        </a>
-      );
-    } else if (nextStreamTime) {
+    if (nextStreamTime) {
       const duration = moment.duration(nextStreamTime.diff(now));
-      const days = duration.days() ? `${duration.days()}d ` : '';
-      const hours = duration.hours() ? `${duration.hours()}h ` : '';
-      const minutes = duration.minutes() ? `${duration.minutes()}m ` : '';
-      const seconds = duration.seconds() ? `${duration.seconds()}s` : '';
+      const days = Math.floor(duration.asDays());
+      const hours = duration.hours();
+      const minutes = duration.minutes();
+      const seconds = duration.seconds();
 
-      const timeText = `${days}${hours}${minutes}${seconds}`;
+      const timeText = `${days > 0 ? `${days}d ` : ""}${hours}h ${minutes}m ${seconds}s`;
 
       return (
         <div className="text-lg md:text-xl text-center my-2 font-bold text-purple-500 italic block">
@@ -136,35 +114,33 @@ export default function StreamSchedule() {
   // Get the maximum width of the divs
   useEffect(() => {
     const maxWidth = Math.max(...divRefs.current.map(ref => ref.offsetWidth));
-    divRefs.current.forEach(ref => ref.style.width = `${maxWidth}px`);
-  }, []);
+    divRefs.current.forEach(ref => (ref.style.width = `${maxWidth}px`));
+  }, [localizedSchedule]);
+
+  if (localizedSchedule.length === 0) {
+    return null; // Prevent SSR/CSR mismatch
+  }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-6 py-6">
       <div id="schedule" className="bg-gray-900 text-gray-200 py-4 rounded-lg shadow-lg">
-        <h2 className="text-xl md:text-2xl font-bold mb-4 text-purple-500 text-center">
-          Stream Schedule <br /><em>(converted to your local time)</em>
+        <h2 className="text-xl md:text-2xl font-bold mb-10 text-purple-500 text-center">
+          Stream Schedule <br />
+          <em>(converted to your local time)</em>
         </h2>
         <div className="text-center">
-          {schedule.map((item, index) => {
-            const converted = convertToLocaleTime(item.time, item.day);
-            return (
-              <div key={index} className="text-lg md:text-xl text-center my-2">
-                <div ref={el => divRefs.current[index] = el} className="bg-gray-800 rounded-md p-4 inline-block">
-                  <span className="font-medium block">{converted.day}</span>
-                  <span className={`font-semibold block ${item.time !== 'OFF' ? 'text-purple-400' : ''}`}>
-                    {converted.time}
-                  </span>
-                </div>
+          {localizedSchedule.map((item, index) => (
+            <div key={index} className="text-lg md:text-xl text-center my-8">
+              <div ref={el => (divRefs.current[index] = el)} className="bg-gray-800 rounded-md p-8 w-60 inline-block">
+                <span className="font-medium block">{item.day}</span>
+                <span className={`font-semibold block ${item.time !== "OFF" ? "text-purple-400" : ""}`}>
+                  {item.time}
+                </span>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
-        <div className="container mx-auto px-4">
-          {renderNextStreamTimer()}
-          <br />
-          <p>New Videos every Monday and Saturday!</p>
-        </div>
+        <div className="container mx-auto px-4">{renderNextStreamTimer()}</div>
       </div>
     </div>
   );
