@@ -40,7 +40,7 @@ export default function BioSection() {
             <br />
             <p className="text-gray-300">Don&apos;t forget to follow and join the Discord server for updates and shenanigans! 🐰🎮🌸🎉☕</p> 
             <br />
-            <p className="text-gray-300">Join me on this adventure! Live Tues, Thurs &amp; Fri at 2pm EST.</p>
+            <p className="text-gray-300">Join me on this adventure! Live Tues, Thurs &amp; Fri from 11am to 5pm EST.</p>
 
           </div>
         </section>
