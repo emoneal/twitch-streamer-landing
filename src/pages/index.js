@@ -75,7 +75,7 @@ export default function Home() {
                   {/* Render the live stream player */}
                   <iframe
                     className="w-full h-96"
-                    src="https://player.twitch.tv/?channel=pixelemii&parent=pixelcafe.moe"
+                    src="https://player.twitch.tv/?channel=pixelemii&parent=www.pixelcafe.moe"
                     allowFullScreen
                     loading="lazy"
                   ></iframe>
@@ -84,7 +84,7 @@ export default function Home() {
                 <div className="w-full md:w-1/3">
                   <iframe
                     className="w-full h-96"
-                    src="https://www.twitch.tv/embed/pixelemii/chat?parent=pixelcafe.moe"
+                    src="https://www.twitch.tv/embed/pixelemii/chat?parent=www.pixelcafe.moe"
                     loading="lazy"
                   ></iframe>
                 </div>
