@@ -14,6 +14,7 @@ export default function StreamSchedule() {
 
   const [localizedSchedule, setLocalizedSchedule] = useState([]);
   const [nextStreamTime, setNextStreamTime] = useState(null);
+  const [remainingTime, setRemainingTime] = useState(null); // Store remaining time in seconds
   const divRefs = useRef([]);
 
   useEffect(() => {
@@ -81,34 +82,52 @@ export default function StreamSchedule() {
     };
 
     setLocalizedSchedule(getLocalizedSchedule());
-    setNextStreamTime(getNextStreamStart());
+    const nextStream = getNextStreamStart();
+    setNextStreamTime(nextStream);
+    if (nextStream) {
+      setRemainingTime(nextStream.diff(moment(), 'seconds')); // Set the remaining time in seconds
+    }
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setRemainingTime((prevRemainingTime) => {
+        if (prevRemainingTime > 0) {
+          return prevRemainingTime - 1; // Decrease by 1 second
+        } else {
+          const nextStreamStart = getNextStreamStart();
+          setNextStreamTime(nextStreamStart);
+          return nextStreamStart ? nextStreamStart.diff(moment(), 'seconds') : null;
+        }
+      });
+    }, 1000); // Update every second
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []);
 
   const renderNextStreamTimer = () => {
-    const now = moment();
-
-    if (nextStreamTime) {
-      const duration = moment.duration(nextStreamTime.diff(now));
-      const days = Math.floor(duration.asDays());
-      const hours = duration.hours();
-      const minutes = duration.minutes();
-      const seconds = duration.seconds();
-
-      const timeText = `${days > 0 ? `${days}d ` : ""}${hours}h ${minutes}m ${seconds}s`;
-
-      return (
-        <div className="text-lg md:text-xl text-center my-2 font-bold text-purple-500 italic block">
-          Next Stream In: <br />
-          {timeText}
-        </div>
-      );
-    } else {
+    if (remainingTime === null) {
       return (
         <div className="text-lg md:text-xl text-center my-2 font-bold text-purple-500 italic block">
           No future streams scheduled.
         </div>
       );
     }
+
+    const duration = moment.duration(remainingTime, 'seconds');
+    const days = Math.floor(duration.asDays());
+    const hours = duration.hours();
+    const minutes = duration.minutes();
+    const seconds = duration.seconds();
+
+    const timeText = `${days > 0 ? `${days}d ` : ""}${hours}h ${minutes}m ${seconds}s`;
+
+    return (
+      <div className="text-lg md:text-xl text-center my-2 font-bold text-purple-500 italic block">
+        Next Stream In: <br />
+        {timeText}
+      </div>
+    );
   };
 
   // Get the maximum width of the divs
