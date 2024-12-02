@@ -40,14 +40,14 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>PixelEmii - Welcome to my site!</title>
-        <meta 
-          name="description" 
-          content="PixelEmii is a that creates gaming content. Join us for live streams, top clips, and more in the world of gaming." 
-        />
+        <title>PixelEmii - Welcome to PyonPyon Cafe!</title>
         <meta 
           name="keywords" 
-          content="Pixel, PixelCafe, PixelEmii, Emii, ENVTuber, VTuber, VTuberEN, gaming, MMORPGs, simulation games, virtual companion, interactive entertainment, humor, authenticity, community, creativity, passion, virtual odyssey, virtual world, streaming, VR, VR Gaming, NES, online streaming, MMORPG adventures, simulation game strategy, story-rich environments, laughter, camaraderie, engaging streamers, charismatic streamers, unique blend, content creation, building a community, memories, endless discovery, virtual playground, online gaming, gaming adventures, gaming community, online community, digital world" 
+          content="PixelEmii, Pixel, Emii, PyonPyon Cafe, PixelCafe, PixelCafeVT, ENVTuber, VTuberEN, English VTuber, Twitch VTuber, YouTube VTuber, trans VTuber, bunny VTuber, bunnygirl, rabbit girl, cozy streamer, gaming streamer, MMORPG VTuber, simulation games, Final Fantasy XIV VTuber, Sims VTuber, Fortnite streamer, variety streamer, nostalgic gamer, interactive entertainment, humor, chill vibes, inclusive community, LGBTQ+ friendly streamer, trans representation, digital adventures, VR gaming, engaging streamer, charismatic personality, creativity and passion, virtual cafe experience, retro gaming, NES games, story-rich games, adventure games, red teamer streamer, cybersecurity gamer, ethical hacker gamer, TryHackMe VTuber, gamer girl vibes, indie game enthusiast, streamer community building, parasocial interaction, cozy digital spaces, online friendships, wholesome content, Pixel Café vibes, bunny girl aesthetic, pastel gaming world, casual gaming fun, strategic simulation games, escapism, comfy gaming sessions, Twitch streamer, YouTuber"
+        />
+        <meta 
+          name="description" 
+          content="Welcome to PyonPyon Cafe! I’m PixelEmii, a cozy bunny girl VTuber bringing chill vibes, laughter, and gaming adventures to Twitch and YouTube. Join me for MMORPGs, simulation games, and nostalgic gaming sessions. Whether we’re exploring virtual worlds, diving into strategic gameplay, or sharing a laugh, the Pixel Café is your virtual escape for fun and friendship. Let’s build a vibrant community where everyone feels at home!"
         />
         <meta 
           name="viewport" 
