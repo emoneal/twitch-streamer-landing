@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 export default function StreamSchedule() {
   const schedule = [
     { day: "Monday", time: "OFF" },
-    { day: "Tuesday", time: "11:00 - 17:00" },
+    { day: "Tuesday", time: "14:00 - 18:00" },
     { day: "Wednesday", time: "OFF" },
-    { day: "Thursday", time: "11:00 - 17:00" },
-    { day: "Friday", time: "11:00 - 17:00" },
+    { day: "Thursday", time: "14:00 - 18:00" },
+    { day: "Friday", time: "14:00 - 18:00" },
     { day: "Saturday", time: "OFF" },
     { day: "Sunday", time: "OFF" },
   ];
