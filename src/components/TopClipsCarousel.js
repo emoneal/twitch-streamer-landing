@@ -5,6 +5,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 const TopClipsCarousel = () => {
   const [topClipsData, setTopClipsData] = useState([]);
   const [activeClip, setActiveClip] = useState(null); // Track the active clip
+  const [muted, setMuted] = useState(true); // Mute the video initially
   const clipsPerPage = 5;
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const TopClipsCarousel = () => {
     event.preventDefault();
     event.stopPropagation();
     setActiveClip(clipId);
+    setMuted(false); // Unmute when clicked
   };
 
   return (
@@ -55,11 +57,13 @@ const TopClipsCarousel = () => {
           <div key={clip.id} className="flex justify-center items-center w-full">
             {activeClip === clip.id ? (
               <iframe
-                src={`https://clips.twitch.tv/embed?clip=${clip.id}&parent=www.pixelcafe.moe&autoplay=true`}
+                src={`https://clips.twitch.tv/embed?clip=${clip.id}&parent=www.pixelcafe.moe`}
                 title={`Top Clip ${index + 1}`}
                 allowFullScreen
                 className="w-full"
                 style={{ height: '500px' }}
+                muted={muted} // Mute the video initially
+                frameBorder="0"
               ></iframe>
             ) : (
               <div className="clip-thumbnail-wrapper" onClick={(e) => handleThumbnailClick(clip.id, e)}>
