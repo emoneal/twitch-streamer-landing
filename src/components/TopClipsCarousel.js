@@ -6,6 +6,7 @@ const TopClipsCarousel = () => {
   const [topClipsData, setTopClipsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeClip, setActiveClip] = useState(null); // Start with no active clip
+  const [initialIndex, setInitialIndex] = useState(0); // Index of the first (most-viewed) clip
 
   const clipsPerPage = 5;
 
@@ -18,9 +19,10 @@ const TopClipsCarousel = () => {
           const sortedClips = [...clips].sort((a, b) => b.view_count - a.view_count);
           setTopClipsData((prevData) => [...prevData, ...sortedClips]);
 
-          // Initialize activeClip to the most viewed clip
-          if (!activeClip && sortedClips.length > 0) {
+          // Initialize activeClip and initialIndex to the most-viewed clip
+          if (sortedClips.length > 0 && activeClip === null) {
             setActiveClip(sortedClips[0].id);
+            setInitialIndex(0); // Always start with the highest-viewed clip
           }
         } else {
           throw new Error('Failed to fetch top clips');
@@ -37,10 +39,11 @@ const TopClipsCarousel = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  const handleThumbnailClick = (clipId, event) => {
+  const handleThumbnailClick = (clipId, index, event) => {
     event.preventDefault();
     event.stopPropagation();
     setActiveClip(clipId); // Set the clicked clip as active
+    setInitialIndex(index); // Update the carousel's active index
   };
 
   return (
@@ -54,7 +57,8 @@ const TopClipsCarousel = () => {
         swipeable
         emulateTouch
         className="custom-carousel"
-        onClickItem={() => {}} // Disable default carousel click
+        selectedItem={initialIndex} // Set the initial slide based on the most viewed clip
+        onChange={(index) => setInitialIndex(index)} // Update `initialIndex` when user interacts
       >
         {topClipsData.map((clip, index) => (
           <div key={clip.id} className="flex justify-center items-center w-full">
@@ -69,7 +73,7 @@ const TopClipsCarousel = () => {
             ) : (
               <div
                 className="clip-thumbnail-wrapper"
-                onClick={(e) => handleThumbnailClick(clip.id, e)}
+                onClick={(e) => handleThumbnailClick(clip.id, index, e)}
               >
                 {/* Display "Most Viewed" badge for the first clip */}
                 {index === 0 && <div className="badge">Most Viewed</div>}
