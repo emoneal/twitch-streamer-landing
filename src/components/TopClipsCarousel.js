@@ -17,6 +17,7 @@ const TopClipsCarousel = () => {
           const clips = await response.json();
           setTopClipsData((prevData) => {
             const combinedData = [...prevData, ...clips];
+            // Sort by view count in descending order
             return combinedData.sort((a, b) => b.view_count - a.view_count);
           });
         } else {
@@ -35,9 +36,9 @@ const TopClipsCarousel = () => {
   };
 
   const handleThumbnailClick = (clipId, event) => {
-    event.preventDefault(); // Prevent carousel scroll
-    event.stopPropagation(); // Stop event bubbling
-    setActiveClip(clipId); // Set clicked clip as active
+    event.preventDefault();
+    event.stopPropagation();
+    setActiveClip(clipId); // Set the clicked clip as active
   };
 
   return (
@@ -48,10 +49,9 @@ const TopClipsCarousel = () => {
         showStatus={false}
         showIndicators={false}
         infiniteLoop={true}
-        centerMode={false}
-        className="custom-carousel"
         swipeable
         emulateTouch
+        className="custom-carousel"
         onClickItem={() => {}} // Disable default carousel click
       >
         {topClipsData.map((clip, index) => (
@@ -69,10 +69,8 @@ const TopClipsCarousel = () => {
                 className="clip-thumbnail-wrapper"
                 onClick={(e) => handleThumbnailClick(clip.id, e)}
               >
-                {/* Placeholder image for most viewed video */}
-                {index === 0 && (
-                  <div className="badge">Most Viewed</div>
-                )}
+                {/* Display "Most Viewed" badge for the first clip */}
+                {index === 0 && <div className="badge">Most Viewed</div>}
                 <img
                   src={clip.thumbnail_url}
                   alt={`Clip ${index + 1}`}
@@ -87,6 +85,15 @@ const TopClipsCarousel = () => {
           </div>
         ))}
       </Carousel>
+      {/* Load more button */}
+      {topClipsData.length > 0 && (
+        <button
+          onClick={handlePageChange}
+          className="mt-4 p-2 bg-blue-500 text-white rounded"
+        >
+          Load More Clips
+        </button>
+      )}
     </div>
   );
 };
