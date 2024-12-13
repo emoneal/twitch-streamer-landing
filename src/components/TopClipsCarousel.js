@@ -5,7 +5,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 const TopClipsCarousel = () => {
   const [topClipsData, setTopClipsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [activeClip, setActiveClip] = useState(null);
+  const [activeClip, setActiveClip] = useState(null); // Holds the currently active clip
+
   const clipsPerPage = 5;
 
   useEffect(() => {
@@ -29,8 +30,14 @@ const TopClipsCarousel = () => {
     fetchTopClips();
   }, [currentPage]);
 
-  const handleThumbnailClick = (clipId) => {
-    setActiveClip((prevClip) => (prevClip === clipId ? null : clipId));
+  const handlePageChange = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handleThumbnailClick = (clipId, event) => {
+    event.preventDefault(); // Prevent carousel scroll
+    event.stopPropagation(); // Stop event bubbling
+    setActiveClip(clipId); // Set clicked clip as active
   };
 
   return (
@@ -41,12 +48,14 @@ const TopClipsCarousel = () => {
         showStatus={false}
         showIndicators={false}
         infiniteLoop={true}
+        centerMode={false}
         className="custom-carousel"
         swipeable
         emulateTouch
+        onClickItem={() => {}} // Disable default carousel click
       >
         {topClipsData.map((clip, index) => (
-          <div key={index} className="flex justify-center items-center w-full">
+          <div key={clip.id} className="flex justify-center items-center w-full">
             {activeClip === clip.id ? (
               <iframe
                 src={`https://clips.twitch.tv/embed?clip=${clip.id}&parent=www.pixelcafe.moe&autoplay=true`}
@@ -58,15 +67,21 @@ const TopClipsCarousel = () => {
             ) : (
               <div
                 className="clip-thumbnail-wrapper"
-                onClick={() => handleThumbnailClick(clip.id)}
+                onClick={(e) => handleThumbnailClick(clip.id, e)}
               >
+                {/* Placeholder image for most viewed video */}
+                {index === 0 && (
+                  <div className="badge">Most Viewed</div>
+                )}
                 <img
                   src={clip.thumbnail_url}
                   alt={`Clip ${index + 1}`}
                   className="w-full h-full"
                 />
                 <div className="clip-title">{clip.title}</div>
-                <div className="play-button" style={{ backgroundColor: 'transparent' }}>▶</div>
+                <div className="play-button" style={{ backgroundColor: 'transparent' }}>
+                  ▶
+                </div>
               </div>
             )}
           </div>
