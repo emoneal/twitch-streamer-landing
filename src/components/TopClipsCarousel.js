@@ -39,7 +39,7 @@ const TopClipsCarousel = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="mx-auto container p-4">
       <Carousel
         showArrows={true}
         showThumbs={false}

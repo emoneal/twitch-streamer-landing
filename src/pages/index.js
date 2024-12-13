@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord, faInstagram, faBluesky } from '@fortawesome/free-brands-svg-icons';
 import FullScreenImage from 'src/components/FullScreenImage'
 import ProfileAndBio from 'src/components/ProfileAndBio';
 import StreamSchedule from 'src/components/StreamSchedule';
@@ -97,7 +97,7 @@ export default function Home() {
         {/* Use the TopClipsCarousel component here */}
         <section id="top-clips" className="bg-gray-900 text-white py-8 my-6 rounded-lg">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-4 text-center">Top Clips</h2>
+            <h2 className="text-3xl font-bold mb-4 text-gray-200 text-center">Top Clips</h2>
             <div className="max-w-6xl mx-auto">
               {/* Render the TopClipsCarousel component */}
               <TopClipsCarousel />
@@ -113,17 +113,20 @@ export default function Home() {
           <a href="https://www.youtube.com/@pixelemii" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faYoutube} />
           </a>
-          <a href="https://www.x.com/pixelemii" className="hover:text-purple-300">
-            <FontAwesomeIcon icon={faXTwitter} /> {/* Replace with appropriate icon */}
-          </a>
-          <a href="https://www.tiktok.com/@pixelemii" className="hover:text-purple-300">
-            <FontAwesomeIcon icon={faTiktok} />
+          <a href="https://discord.gg/TbGuUFV2HT" className="hover:text-purple-300">
+            <FontAwesomeIcon icon={faDiscord} />
           </a>
           <a href="https://www.instagram.com/pixelemii" className="hover:text-purple-300">
             <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a href="https://discord.gg/TbGuUFV2HT" className="hover:text-purple-300">
-            <FontAwesomeIcon icon={faDiscord} />
+          <a href="https://www.tiktok.com/@pixelemii" className="hover:text-purple-300">
+            <FontAwesomeIcon icon={faTiktok} />
+          </a>
+          <a href="https://www.x.com/pixelemii" className="hover:text-purple-300">
+            <FontAwesomeIcon icon={faXTwitter} />
+          </a>
+          <a href="https://bsky.app/profile/pixelemii.bsky.social" className="hover:text-purple-300">
+            <FontAwesomeIcon icon={faBluesky} />
           </a>
         </div>
       </footer>
