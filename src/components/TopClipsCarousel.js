@@ -5,6 +5,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 const TopClipsCarousel = () => {
   const [topClipsData, setTopClipsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [activeClip, setActiveClip] = useState(null);
   const clipsPerPage = 5;
 
   useEffect(() => {
@@ -14,8 +15,8 @@ const TopClipsCarousel = () => {
         if (response.ok) {
           const clips = await response.json();
           setTopClipsData((prevData) => {
-              const combinedData = [...prevData, ...clips];
-              return combinedData.sort((a, b) => b.view_count - a.view_count);
+            const combinedData = [...prevData, ...clips];
+            return combinedData.sort((a, b) => b.view_count - a.view_count);
           });
         } else {
           throw new Error('Failed to fetch top clips');
@@ -28,19 +29,9 @@ const TopClipsCarousel = () => {
     fetchTopClips();
   }, [currentPage]);
 
-  const handlePageChange = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+  const handleThumbnailClick = (clipId) => {
+    setActiveClip((prevClip) => (prevClip === clipId ? null : clipId));
   };
-
-  const [activeClip, setActiveClip] = useState(null);
-
-  const handleThumbnailClick = (clipId, event) => {
-    event.preventDefault(); // Prevent default action
-    event.stopPropagation(); // Stop event from propagating to carousel
-    setActiveClip(clipId);
-};
-
-
 
   return (
     <div className="container mx-auto p-4">
@@ -50,11 +41,9 @@ const TopClipsCarousel = () => {
         showStatus={false}
         showIndicators={false}
         infiniteLoop={true}
-        centerMode={false}
         className="custom-carousel"
         swipeable
         emulateTouch
-        onClickItem={handlePageChange} // Triggered when the user clicks on a carousel item
       >
         {topClipsData.map((clip, index) => (
           <div key={index} className="flex justify-center items-center w-full">
@@ -67,24 +56,21 @@ const TopClipsCarousel = () => {
                 style={{ height: '500px' }}
               ></iframe>
             ) : (
-
-<div key={index} className="flex justify-center items-center w-full">
-  <div className="clip-thumbnail-wrapper" onClick={(e) => handleThumbnailClick(clip.id, e)}>
-    <img
-      src={clip.thumbnail_url}
-      alt={`Clip ${index + 1}`}
-      className="w-full h-full"
-    />
-    <div className="clip-title">{clip.title}</div>
-    <div className="play-button" style={{ backgroundColor: 'transparent' }}>▶</div>
-  </div>
-</div>
+              <div
+                className="clip-thumbnail-wrapper"
+                onClick={() => handleThumbnailClick(clip.id)}
+              >
+                <img
+                  src={clip.thumbnail_url}
+                  alt={`Clip ${index + 1}`}
+                  className="w-full h-full"
+                />
+                <div className="clip-title">{clip.title}</div>
+                <div className="play-button" style={{ backgroundColor: 'transparent' }}>▶</div>
+              </div>
             )}
           </div>
         ))}
-
-
-
       </Carousel>
     </div>
   );

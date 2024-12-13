@@ -56,7 +56,7 @@ export default function BioSection() {
                 So hop into my digital burrow and let&apos;s make some memories together! Whether we&apos;re raiding dungeons, breaking simulators, or just vibing at the cafe, there&apos;s always room for more friends in this bunny&apos;s warren.
             </p>
             <div class="mt-8 bg-gray-800 rounded-lg p-4 text-center text-gray-300">
-                Join me for the chaos on Tues, Thurs &amp; Fri from 11am to 5pm EST! 🐰🎮🍶☕
+                Join me for the chaos on Tues, Thurs &amp; Fri from 2pm to 6pm EST! 🐰🎮🍶☕
             </div>
 
           </div>
