@@ -6,7 +6,7 @@ const TopClipsCarousel = () => {
   const [topClipsData, setTopClipsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeClip, setActiveClip] = useState(null); // Start with no active clip
-  const [initialIndex, setInitialIndex] = useState(0); // Index of the first (most-viewed) clip
+  const [initialIndex, setInitialIndex] = useState(0); // Index of the most-viewed clip
 
   const clipsPerPage = 5;
 
@@ -16,13 +16,14 @@ const TopClipsCarousel = () => {
         const response = await fetch(`/api/top-clips?page=${currentPage}&perPage=${clipsPerPage}`);
         if (response.ok) {
           const clips = await response.json();
+          // Sort clips by view count (descending order)
           const sortedClips = [...clips].sort((a, b) => b.view_count - a.view_count);
           setTopClipsData((prevData) => [...prevData, ...sortedClips]);
 
           // Initialize activeClip and initialIndex to the most-viewed clip
           if (sortedClips.length > 0 && activeClip === null) {
             setActiveClip(sortedClips[0].id);
-            setInitialIndex(0); // Always start with the highest-viewed clip
+            setInitialIndex(0); // Start with the highest-viewed clip
           }
         } else {
           throw new Error('Failed to fetch top clips');
