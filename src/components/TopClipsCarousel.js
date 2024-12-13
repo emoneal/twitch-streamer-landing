@@ -5,7 +5,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 const TopClipsCarousel = () => {
   const [topClipsData, setTopClipsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [activeClip, setActiveClip] = useState(null); // Holds the currently active clip
+  const [activeClip, setActiveClip] = useState(null); // Start with no active clip
 
   const clipsPerPage = 5;
 
@@ -15,11 +15,13 @@ const TopClipsCarousel = () => {
         const response = await fetch(`/api/top-clips?page=${currentPage}&perPage=${clipsPerPage}`);
         if (response.ok) {
           const clips = await response.json();
-          setTopClipsData((prevData) => {
-            const combinedData = [...prevData, ...clips];
-            // Sort by view count in descending order
-            return combinedData.sort((a, b) => b.view_count - a.view_count);
-          });
+          const sortedClips = [...clips].sort((a, b) => b.view_count - a.view_count);
+          setTopClipsData((prevData) => [...prevData, ...sortedClips]);
+
+          // Initialize activeClip to the most viewed clip
+          if (!activeClip && sortedClips.length > 0) {
+            setActiveClip(sortedClips[0].id);
+          }
         } else {
           throw new Error('Failed to fetch top clips');
         }
@@ -29,7 +31,7 @@ const TopClipsCarousel = () => {
     };
 
     fetchTopClips();
-  }, [currentPage]);
+  }, [currentPage, activeClip]);
 
   const handlePageChange = () => {
     setCurrentPage((prevPage) => prevPage + 1);
