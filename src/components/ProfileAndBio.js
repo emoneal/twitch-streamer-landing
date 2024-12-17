@@ -47,7 +47,7 @@ const ProfileAndBio = () => {
       className="flex flex-col items-center md:flex-row md:items-start md:space-x-8 p-6"
       whileInView={{ opacity: 1 }}
     >
-      <div className="flex flex-col items-center md:items-start mb-8 md:mb-0 sticky top-20 z-1">
+      <div className="flex flex-col items-center md:items-start mb-8 md:mb-0 md:sticky md:top-20 z-1">
         <motion.div 
           whileHover="hover" 
           whileTap="tap" 
