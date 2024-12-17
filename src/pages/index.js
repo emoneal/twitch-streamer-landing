@@ -40,10 +40,10 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>PixelEmii - Welcome to PyonPyon Cafe!</title>
+        <title>PixelEmii - Welcome to Byte & Brew Cafe!</title>
         <meta 
           name="keywords" 
-          content="PixelEmii, Pixel, Emii, PyonPyon Cafe, PixelCafe, PixelCafeVT, ENVTuber, VTuberEN, English VTuber, Twitch VTuber, YouTube VTuber, trans VTuber, bunny VTuber, bunnygirl, rabbit girl, cozy streamer, gaming streamer, MMORPG VTuber, simulation games, Final Fantasy XIV VTuber, Sims VTuber, Fortnite streamer, variety streamer, nostalgic gamer, interactive entertainment, humor, chill vibes, inclusive community, LGBTQ+ friendly streamer, trans representation, digital adventures, VR gaming, engaging streamer, charismatic personality, creativity and passion, virtual cafe experience, retro gaming, NES games, story-rich games, adventure games, red teamer streamer, cybersecurity gamer, ethical hacker gamer, TryHackMe VTuber, gamer girl vibes, indie game enthusiast, streamer community building, parasocial interaction, cozy digital spaces, online friendships, wholesome content, Pixel Café vibes, bunny girl aesthetic, pastel gaming world, casual gaming fun, strategic simulation games, escapism, comfy gaming sessions, Twitch streamer, YouTuber"
+          content="PixelEmii, Pixel, Emii, Byte & Brew Cafe, Cafe VTuber, PixelCafe, PixelCafeVT, ENVTuber, VTuberEN, English VTuber, Twitch VTuber, YouTube VTuber, trans VTuber, bunny VTuber, bunnygirl, rabbit girl, cozy streamer, gaming streamer, MMORPG VTuber, simulation games, Final Fantasy XIV VTuber, Sims VTuber, Fortnite streamer, variety streamer, nostalgic gamer, interactive entertainment, humor, chill vibes, inclusive community, LGBTQ+ friendly streamer, trans representation, digital adventures, VR gaming, engaging streamer, charismatic personality, creativity and passion, virtual cafe experience, retro gaming, NES games, story-rich games, adventure games, red teamer streamer, cybersecurity gamer, ethical hacker gamer, TryHackMe VTuber, gamer girl vibes, indie game enthusiast, streamer community building, parasocial interaction, cozy digital spaces, online friendships, wholesome content, Pixel Café vibes, bunny girl aesthetic, pastel gaming world, casual gaming fun, strategic simulation games, escapism, comfy gaming sessions, Twitch streamer, YouTuber"
         />
         <meta 
           name="description" 
@@ -107,25 +107,25 @@ export default function Home() {
       </main>
       <footer className="sticky bottom-0 bg-gray-800 text-gray-300 py-4">
         <div className="container mx-auto px-4 text-center flex justify-center space-x-4">
-          <a href="https://www.twitch.tv/pixelemii" className="hover:text-purple-300">
+          <a href="https://www.twitch.tv/pixelemii" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faTwitch} />
           </a>
-          <a href="https://www.youtube.com/@pixelemii" className="hover:text-purple-300">
+          <a href="https://www.youtube.com/@pixelemii?sub_confirmation=1" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faYoutube} />
           </a>
-          <a href="https://discord.gg/TbGuUFV2HT" className="hover:text-purple-300">
+          <a href="https://discord.gg/TbGuUFV2HT" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faDiscord} />
           </a>
-          <a href="https://www.instagram.com/pixelemii" className="hover:text-purple-300">
+          <a href="https://www.instagram.com/pixelemii" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a href="https://www.tiktok.com/@pixelemii" className="hover:text-purple-300">
+          <a href="https://www.tiktok.com/@pixelemii" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faTiktok} />
           </a>
-          <a href="https://www.x.com/pixelemii" className="hover:text-purple-300">
+          <a href="https://www.x.com/pixelemii" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faXTwitter} />
           </a>
-          <a href="https://bsky.app/profile/pixelemii.bsky.social" className="hover:text-purple-300">
+          <a href="https://bsky.app/profile/pixelemii.bsky.social" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faBluesky} />
           </a>
         </div>
