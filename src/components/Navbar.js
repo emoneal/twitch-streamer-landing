@@ -54,15 +54,11 @@ const Navbar = ({ isMobile }) => {
           ) : (
             // Render a link to the stream section when not on mobile
             <a onClick={() => smoothScroll('stream')} className="hover:text-purple-300 cursor-pointer">
-              Stream
+              Twitch
             </a>
           )}
           <a onClick={() => smoothScroll('youtube')} className="hover:text-purple-300 cursor-pointer">
-            YouTube
-          </a>
-
-          <a onClick={() => smoothScroll('top-clips')} className="hover:text-purple-300 cursor-pointer">
-            Clips
+            Videos
           </a>
         </div>
       </div>
