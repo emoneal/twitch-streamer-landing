@@ -6,6 +6,7 @@ export default function handler(req, res) {
     .ele('urlset', { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' })
     .ele('url')
     .ele('loc').txt('https://www.pixelcafe.moe').up()
+    .ele('loc').txt('https://www.pixelemii.com').up()
     .ele('lastmod').txt(new Date().toISOString()).up()
     .ele('changefreq').txt('daily').up()
     .ele('priority').txt('1.0').up()

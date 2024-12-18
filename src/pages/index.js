@@ -47,7 +47,7 @@ export default function Home() {
         />
         <meta 
           name="description" 
-          content="Welcome to PyonPyon Cafe! I’m PixelEmii, a cozy bunny girl VTuber bringing chill vibes, laughter, and gaming adventures to Twitch and YouTube. Join me for MMORPGs, simulation games, and nostalgic gaming sessions. Whether we’re exploring virtual worlds, diving into strategic gameplay, or sharing a laugh, the Pixel Café is your virtual escape for fun and friendship. Let’s build a vibrant community where everyone feels at home!"
+          content="Welcome to Byte & Brew Cafe! I’m PixelEmii, a cozy bunny girl VTuber bringing chill vibes, laughter, and gaming adventures to Twitch and YouTube. Join me for MMORPGs, simulation games, and nostalgic gaming sessions. Whether we’re exploring virtual worlds, diving into strategic gameplay, or sharing a laugh, the Pixel Café is your virtual escape for fun and friendship. Let’s build a vibrant community where everyone feels at home!"
         />
         <meta 
           name="viewport" 
@@ -75,7 +75,7 @@ export default function Home() {
                   {/* Render the live stream player */}
                   <iframe
                     className="w-full h-96"
-                    src="https://player.twitch.tv/?channel=pixelemii&parent=www.pixelcafe.moe"
+                    src="https://player.twitch.tv/?channel=pixelemii&parent=www.pixelemii.com"
                     allowFullScreen
                     loading="lazy"
                   ></iframe>
@@ -84,7 +84,7 @@ export default function Home() {
                 <div className="w-full md:w-1/3">
                   <iframe
                     className="w-full h-96"
-                    src="https://www.twitch.tv/embed/pixelemii/chat?parent=www.pixelcafe.moe"
+                    src="https://www.twitch.tv/embed/pixelemii/chat?parent=www.pixelemii.com"
                     loading="lazy"
                   ></iframe>
                 </div>

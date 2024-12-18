@@ -57,7 +57,7 @@ const TopClipsCarousel = () => {
           <div key={clip.id} className="flex justify-center items-center w-full">
             {activeClip === clip.id ? (
               <iframe
-                src={`https://clips.twitch.tv/embed?clip=${clip.id}&parent=www.pixelcafe.moe`}
+                src={`https://clips.twitch.tv/embed?clip=${clip.id}&parent=www.pixelemii.com`}
                 title={`Top Clip ${index + 1}`}
                 allowFullScreen
                 className="w-full"
