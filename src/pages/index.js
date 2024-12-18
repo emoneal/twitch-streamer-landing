@@ -8,6 +8,8 @@ import ProfileAndBio from 'src/components/ProfileAndBio';
 import StreamSchedule from 'src/components/StreamSchedule';
 import TopClipsCarousel from '../components/TopClipsCarousel'; // Import the TopClipsCarousel component
 import YouTubeSection from '../components/YouTubeSection'
+import Script from 'next/script';
+
 
 import '../app/globals.css';
 import '../app/output.css';
@@ -37,7 +39,10 @@ export default function Home() {
     };
   }, []);
 
+  
+
   return (
+    
     <div>
       <Head>
         <title>PixelEmii - Welcome to Byte & Brew Cafe!</title>
@@ -56,6 +61,20 @@ export default function Home() {
         <meta property="og:image" content="/ogpixelcafe.png"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
       </Head>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-3KGBJQ48CZ"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3KGBJQ48CZ');
+        `}
+      </Script>
+
+      
       <Navbar />
       <FullScreenImage />
       <main className="container mx-auto pt-20 p-4">
