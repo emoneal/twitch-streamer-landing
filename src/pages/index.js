@@ -47,7 +47,7 @@ export default function Home() {
         />
         <meta 
           name="description" 
-          content="Welcome to Byte & Brew Cafe! I’m PixelEmii, a cozy bunny girl VTuber bringing chill vibes, laughter, and gaming adventures to Twitch and YouTube. Join me for MMORPGs, simulation games, and nostalgic gaming sessions. Whether we’re exploring virtual worlds, diving into strategic gameplay, or sharing a laugh, the Pixel Café is your virtual escape for fun and friendship. Let’s build a vibrant community where everyone feels at home!"
+          content="Welcome to Byte & Brew Cafe! I’m PixelEmii, a cozy bunny girl VTuber bringing chill vibes, laughter, and gaming adventures to Twitch and YouTube. Join me for MMORPGs, simulation games, and nostalgic gaming sessions. Whether we’re exploring virtual worlds, diving into strategic gameplay, or sharing a laugh, the Byte & Brew Cafe is your virtual escape for fun and friendship. Let’s build a vibrant community where everyone feels at home!"
         />
         <meta 
           name="viewport" 
