@@ -4,12 +4,12 @@ import { useState, useEffect, useRef } from 'react';
 export default function StreamSchedule() {
   const schedule = [
     { day: "Monday", time: "OFF" },
-    { day: "Tuesday", time: "14:00 - 18:00" },
+    { day: "Tuesday", time: "16:00 - 20:00" },
     { day: "Wednesday", time: "OFF" },
-    { day: "Thursday", time: "14:00 - 18:00" },
-    { day: "Friday", time: "OFF" },
-    { day: "Saturday", time: "17:00 - 23:00" },
-    { day: "Sunday", time: "OFF" },
+    { day: "Thursday", time: "OFF" },
+    { day: "Friday", time: "20:00 - 24:00" },
+    { day: "Saturday", time: "OFF" },
+    { day: "Sunday", time: "14:00 - 20:00" },
   ];
 
   const [localizedSchedule, setLocalizedSchedule] = useState([]);
