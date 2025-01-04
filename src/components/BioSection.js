@@ -21,10 +21,10 @@ export default function BioSection() {
             </p>
             <br />
             <p className="text-gray-300">
-                🌸 Hop into my digital burrow <b>Tues/Thurs/Fri (2pm-5pm EST)</b> for gaming, caffeine, and just a tiny bit of chaos! Remember: In this café, every bug is a feature!
+                🌸 Hop into my digital burrow for gaming, caffeine, and just a tiny bit of chaos! Remember: In this café, every bug is a feature!
             </p>
             <div className="mt-8 bg-gray-800 rounded-lg p-4 text-center text-gray-300">
-                Join me for the chaos on Tues, Thurs &amp; Fri from 2pm to 6pm EST! 🐰🎮🍶☕
+                Join me for the chaos at 5pm on Tues, 8pm on Fri &amp; Sun from 2pm EST! 🐰🎮🍶☕
             </div>
           </div>
         </section>
