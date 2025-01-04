@@ -7,7 +7,7 @@ export default function StreamSchedule() {
     { day: "Tuesday", time: "16:00 - 20:00" },
     { day: "Wednesday", time: "OFF" },
     { day: "Thursday", time: "OFF" },
-    { day: "Friday", time: "20:00 - 24:00" },
+    { day: "Friday", time: "20:00 - 0:00" },
     { day: "Saturday", time: "OFF" },
     { day: "Sunday", time: "14:00 - 20:00" },
   ];
