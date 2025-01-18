@@ -45,21 +45,22 @@ export default function Home() {
     
     <div>
       <Head>
-        <title>PixelEmii - Welcome to Byte & Brew Cafe!</title>
+      <meta charset="UTF-8" 
+      />
+        <title>PixelEmii - The Hacker Bunny VTuber</title>
         <meta 
           name="keywords" 
-          content="PixelEmii, Pixel, Emii, Byte & Brew Cafe, Cafe VTuber, PixelCafe, PixelCafeVT, ENVTuber, VTuberEN, English VTuber, Twitch VTuber, YouTube VTuber, trans VTuber, bunny VTuber, bunnygirl, rabbit girl, cozy streamer, gaming streamer, MMORPG VTuber, simulation games, Final Fantasy XIV VTuber, Sims VTuber, Fortnite streamer, variety streamer, nostalgic gamer, interactive entertainment, humor, chill vibes, inclusive community, LGBTQ+ friendly streamer, trans representation, digital adventures, VR gaming, engaging streamer, charismatic personality, creativity and passion, virtual cafe experience, retro gaming, NES games, story-rich games, adventure games, red teamer streamer, cybersecurity gamer, ethical hacker gamer, TryHackMe VTuber, gamer girl vibes, indie game enthusiast, streamer community building, parasocial interaction, cozy digital spaces, online friendships, wholesome content, Pixel Café vibes, bunny girl aesthetic, pastel gaming world, casual gaming fun, strategic simulation games, escapism, comfy gaming sessions, Twitch streamer, YouTuber"
+          content="PixelEmii, Pixel, Emii, Byte & Brew Cafe, Cafe VTuber, PixelCafe, PixelCafeVT, ENVTuber, VTuberEN, English VTuber, Twitch VTuber, YouTube VTuber, trans VTuber, bunny VTuber, bunnygirl, rabbit girl, cozy streamer, gaming streamer, MMORPG VTuber, simulation games, Final Fantasy XIV VTuber, Sims VTuber, Fortnite streamer, variety streamer, nostalgic gamer, interactive entertainment, humor, chill vibes, inclusive community, LGBTQ+ friendly streamer, trans representation, digital adventures, VR gaming, engaging streamer, charismatic personality, creativity and passion, virtual cafe experience, retro gaming, NES games, story-rich games, adventure games, red teamer streamer, cybersecurity gamer, ethical hacker gamer, TryHackMe VTuber, gamer girl vibes, indie game enthusiast, streamer community building, parasocial interaction, cozy digital spaces, online friendships, wholesome content, Pixel Café vibes, bunny girl aesthetic, pastel gaming world, casual gaming fun, strategic simulation games, escapism, comfy gaming sessions, Twitch streamer, YouTuber, cyberpunk, cyberpunk vtuber, hacker vtuber, cybersecurity vtuber, tutorials"
         />
-        <meta 
-          name="description" 
-          content="Welcome to Byte & Brew Cafe! I’m PixelEmii, a cozy bunny girl VTuber bringing chill vibes, laughter, and gaming adventures to Twitch and YouTube. Join me for MMORPGs, simulation games, and nostalgic gaming sessions. Whether we’re exploring virtual worlds, diving into strategic gameplay, or sharing a laugh, the Byte & Brew Cafe is your virtual escape for fun and friendship. Let’s build a vibrant community where everyone feels at home!"
-        />
+        <meta name="description" content="PixelEmii is a cyberpunk-themed VTuber with a mischievous, playful personality and a love for gaming. Join the chaos at the Byte & Brew Cafe!" />
         <meta 
           name="viewport" 
           content="width=device-width, initial-scale=1" 
         />
         <meta property="og:image" content="/ogpixelcafe.png"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <meta name="robots" content="index, follow" />
+
       </Head>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-3KGBJQ48CZ"
