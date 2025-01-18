@@ -11,7 +11,7 @@ export default function handler(req, res) {
         .ele('priority').txt('1.0').up()
       .up() // Closes the first <url> tag
       .ele('url')
-        .ele('loc').txt('https://social.pixelemii.com').up()
+        .ele('loc').txt('https://socials.pixelemii.com').up()
         .ele('lastmod').txt(new Date().toISOString()).up()
         .ele('changefreq').txt('daily').up()
         .ele('priority').txt('1.0').up()
