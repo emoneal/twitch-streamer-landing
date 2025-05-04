@@ -24,7 +24,7 @@ export default function BioSection() {
                 🌸 Hop into my digital burrow for gaming, caffeine, and just a tiny bit of chaos! Remember: In this café, every bug is a feature!
             </p>
             <div className="mt-8 bg-gray-800 rounded-lg p-4 text-center text-gray-300">
-                Join us for the chaos at 6pm EST on Wed and Fri &amp; Sun from 3pm EST! 🐰🎮🍶☕
+                Join us for the chaos starting at 7pm EST Sun, Mon, Wed &amp; Fri! 🐰🎮🍶☕
             </div>
           </div>
         </section>
