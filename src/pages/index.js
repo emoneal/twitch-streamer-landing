@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord, faInstagram, faBluesky } from '@fortawesome/free-brands-svg-icons';
+import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord, faInstagram, faBluesky, faSpotify } from '@fortawesome/free-brands-svg-icons';
 import FullScreenImage from 'src/components/FullScreenImage'
 import ProfileAndBio from 'src/components/ProfileAndBio';
 import StreamSchedule from 'src/components/StreamSchedule';
@@ -132,6 +132,9 @@ export default function Home() {
           </a>
           <a href="https://www.youtube.com/@pixelemii?sub_confirmation=1" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faYoutube} />
+          </a>
+          <a href="https://open.spotify.com/artist/4IVqzOLabkkT6ljyg1z5x6" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faSpotify} />
           </a>
           <a href="https://discord.gg/TbGuUFV2HT" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faDiscord} />

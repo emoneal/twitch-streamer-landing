@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import BioSection from './BioSection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord, faInstagram, faBluesky } from '@fortawesome/free-brands-svg-icons';
+import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord, faInstagram, faBluesky, faSpotify } from '@fortawesome/free-brands-svg-icons';
 
 const ProfileAndBio = () => {
   const containerVariants = {
@@ -70,6 +70,7 @@ const ProfileAndBio = () => {
           {[ 
             { href: "https://www.twitch.tv/pixelemii", icon: faTwitch },
             { href: "https://www.youtube.com/@pixelemii?sub_confirmation=1", icon: faYoutube },
+            { href: "https://open.spotify.com/artist/4IVqzOLabkkT6ljyg1z5x6", icon: faSpotify },
             { href: "https://discord.gg/TbGuUFV2HT", icon: faDiscord },
             { href: "https://www.instagram.com/pixelemii", icon: faInstagram },
             { href: "https://www.tiktok.com/@pixelemii", icon: faTiktok },
