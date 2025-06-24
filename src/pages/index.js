@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
+import ParticlesBackground from 'src/components/ParticlesBackground';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord, faInstagram, faBluesky, faSpotify } from '@fortawesome/free-brands-svg-icons';
 import FullScreenImage from 'src/components/FullScreenImage'
 import ProfileAndBio from 'src/components/ProfileAndBio';
+import ProfileCard from 'src/components/ProfileCard';
 import StreamSchedule from 'src/components/StreamSchedule';
 import TopClipsCarousel from '../components/TopClipsCarousel'; // Import the TopClipsCarousel component
 import YouTubeSection from '../components/YouTubeSection'
@@ -60,7 +62,6 @@ export default function Home() {
         <meta property="og:image" content="/ogpixelcafe.png"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <meta name="robots" content="index, follow" />
-
       </Head>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-3KGBJQ48CZ"
@@ -74,13 +75,15 @@ export default function Home() {
           gtag('config', 'G-3KGBJQ48CZ');
         `}
       </Script>
-
-      
+      <ParticlesBackground />
       <Navbar />
       <FullScreenImage />
       <main className="container mx-auto pt-20 p-4">
         <section id="bio" className="flex justify-center items-center">
           <ProfileAndBio />
+        </section>
+        <section id="profile" className="flex justify-center items-center">
+          <ProfileCard />
         </section>
         <section id="schedule" className="py-8">
           <StreamSchedule />
