@@ -74,9 +74,15 @@ const ProfileCard = () => {
             />
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold py-6 text-purple-300 glitch-text">
-            PixelEmii 🔌🐰⚡
-          </h1>
+<div className="py-6">
+  <h1
+    className="glitch text-4xl md:text-6xl font-extrabold leading-none"
+    data-text="PixelEmii 🔌🐰⚡"
+  >
+    PixelEmii 🔌🐰⚡
+  </h1>
+</div>
+
           <p className="text-lg md:text-2xl p-8 text-purple-200">
             Hacker bunny VTuber unleashing chaos, memes, and meltdown energy.
           </p>
