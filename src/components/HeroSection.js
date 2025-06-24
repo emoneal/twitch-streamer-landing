@@ -63,7 +63,7 @@ const ProfileCard = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-black via-purple-900 to-gray-900 opacity-90" />
 
       <div className="relative max-w-4xl w-full space-y-10">
-        <div className="flex flex-col items-center space-y-4">
+        <div className="flex flex-col items-center py-10 space-y-4">
           <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-purple-500">
             <Image
               src="/profile.png"
@@ -113,7 +113,7 @@ const ProfileCard = () => {
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-center py-12 text-purple-300 glitch-text">
+        <h2 className="text-2xl font-bold text-center text-purple-300 glitch-text">
           ACCESS LOG: PIXELEMII
         </h2>
         <p className="text-xs text-center text-purple-400 font-mono">
