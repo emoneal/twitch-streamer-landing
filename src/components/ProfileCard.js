@@ -16,7 +16,7 @@ const ProfileCard = () => {
 
   return (
     <div className="bg-gradient-to-b from-black to-gray-900 text-white p-6 max-w-md mx-auto rounded-2xl shadow-xl space-y-3">
-      <h2 className="text-2xl font-bold text-center text-purple-300">OSHI MARK 🔌🐰</h2>
+      <h2 className="text-2xl font-bold text-center text-purple-300">OSHI MARK 🐰⚡</h2>
       <div className="grid grid-cols-2 gap-3 text-sm">
         <div className="bg-black text-purple-300 font-semibold py-1 px-2">Nickname</div>
         <div className="bg-purple-900 py-1 px-2">{data.nickname}</div>
