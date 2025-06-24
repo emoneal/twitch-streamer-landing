@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import ParticlesBackground from 'src/components/ParticlesBackground';
+import HeroSection from 'src/components/HeroSection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitch, faYoutube, faTiktok, faXTwitter, faDiscord, faInstagram, faBluesky, faSpotify } from '@fortawesome/free-brands-svg-icons';
 import FullScreenImage from 'src/components/FullScreenImage'
@@ -77,13 +78,9 @@ export default function Home() {
       </Script>
       <ParticlesBackground />
       <Navbar />
-      <FullScreenImage />
-      <main className="container mx-auto pt-20 p-4">
-        <section id="bio" className="flex justify-center items-center">
-          <ProfileAndBio />
-        </section>
-        <section id="profile" className="flex justify-center items-center">
-          <ProfileCard />
+      <main>
+        <section id="bio">
+        <HeroSection />
         </section>
         <section id="schedule" className="py-8">
           <StreamSchedule />
@@ -128,7 +125,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer className="sticky bottom-0 bg-gray-800 text-gray-300 py-4">
+      <footer className="sticky bottom-0 bg-gray-800 text-gray-300 py-4 z-5">
         <div className="container mx-auto px-4 text-center flex justify-center space-x-4">
           <a href="https://www.twitch.tv/pixelemii" className="hover:text-purple-300" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faTwitch} />
