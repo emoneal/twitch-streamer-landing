@@ -3,13 +3,13 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function StreamSchedule() {
   const schedule = [
-    { day: "Monday", time: "19:00 - 23:00" },
+    { day: "Monday", time: "OFF" },
     { day: "Tuesday", time: "OFF" },
-    { day: "Wednesday", time: "19:00 - 23:00" },
+    { day: "Wednesday", time: "17:00 - 21:00" },
     { day: "Thursday", time: "OFF" },
-    { day: "Friday", time: "19:00 - 23:00" },
-    { day: "Saturday", time: "OFF" },
-    { day: "Sunday", time: "19:00 - 23:00" },
+    { day: "Friday", time: "OFF" },
+    { day: "Saturday", time: "17:00 - 21:00" },
+    { day: "Sunday", time: "17:00 - 21:00" },
   ];
 
   const [localizedSchedule, setLocalizedSchedule] = useState([]);
