@@ -47,23 +47,80 @@ export default function Home() {
   return (
     
     <div>
-      <Head>
-      <meta charset="UTF-8" 
+ (
+    <Head>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>PixelEmii 👾🐇 | The Hacker Bunny VTuber</title>
+      <meta
+        name="description"
+        content="PixelEmii is the glitch bunny VTuber behind the Byte & Brew Café—variety streams with surreal humor, cozy chaos, and caffeinated vibes. Live Wed/Sat/Sun @ 5pm ET."
       />
-        <title>PixelEmii - The Hacker Bunny VTuber</title>
-        <meta 
-          name="keywords" 
-          content="PixelEmii, Pixel, Emii, Byte & Brew Cafe, Cafe VTuber, PixelCafe, PixelCafeVT, ENVTuber, VTuberEN, English VTuber, Twitch VTuber, YouTube VTuber, trans VTuber, bunny VTuber, bunnygirl, rabbit girl, cozy streamer, gaming streamer, MMORPG VTuber, simulation games, Final Fantasy XIV VTuber, Sims VTuber, Fortnite streamer, variety streamer, nostalgic gamer, interactive entertainment, humor, chill vibes, inclusive community, LGBTQ+ friendly streamer, trans representation, digital adventures, VR gaming, engaging streamer, charismatic personality, creativity and passion, virtual cafe experience, retro gaming, NES games, story-rich games, adventure games, red teamer streamer, cybersecurity gamer, ethical hacker gamer, TryHackMe VTuber, gamer girl vibes, indie game enthusiast, streamer community building, parasocial interaction, cozy digital spaces, online friendships, wholesome content, Pixel Café vibes, bunny girl aesthetic, pastel gaming world, casual gaming fun, strategic simulation games, escapism, comfy gaming sessions, Twitch streamer, YouTuber, cyberpunk, cyberpunk vtuber, hacker vtuber, cybersecurity vtuber, tutorials"
-        />
-        <meta name="description" content="PixelEmii is a cyberpunk-themed VTuber with a mischievous, playful personality and a love for gaming. Join the chaos at the Byte & Brew Cafe!" />
-        <meta 
-          name="viewport" 
-          content="width=device-width, initial-scale=1" 
-        />
-        <meta property="og:image" content="/ogpixelcafe.png"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <meta name="robots" content="index, follow" />
-      </Head>
+      <meta
+        name="keywords"
+        content="PixelEmii, VTuber, ENVTuber, VTuberEN, chaotic VTuber, unhinged VTuber, meme VTuber, funny VTuber, gaming VTuber, YouTube VTuber, Twitch VTuber, bunny VTuber, bunny girl, trans VTuber, LGBT VTuber, cursed gaming, unhinged streamer, silly VTuber, unfiltered VTuber, glitch bunny, cyberpunk VTuber, Byte & Brew Café, Pixel Café, Pixel Bunny, chaotic gamer, streamer, content creator"
+      />
+      <link rel="canonical" href="https://www.pixelemii.com/" />
+      <meta name="theme-color" content="#E79FC3" />
+      <link rel="icon" href="/favicon.ico" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+      {/* --- Open Graph --- */}
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="PixelEmii" />
+      <meta property="og:title" content="PixelEmii | The Hacker Bunny VTuber" />
+      <meta
+        property="og:description"
+        content="Join PixelEmii for variety streams: surreal, funny, and a little cursed. Live Wed/Sat/Sun @ 5pm ET."
+      />
+      <meta property="og:url" content="https://www.pixelemii.com/" />
+      <meta
+        property="og:image"
+        content="https://www.pixelemii.com/ogpixelcafe.png"
+      />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:locale" content="en_US" />
+
+      {/* --- Twitter --- */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="PixelEmii | The Hacker Bunny VTuber" />
+      <meta
+        name="twitter:description"
+        content="Caffeinated chaos, surreal games, and cozy vibes. Live Wed/Sat/Sun @ 5pm ET."
+      />
+      <meta
+        name="twitter:image"
+        content="https://www.pixelemii.com/ogpixelcafe.png"
+      />
+      <meta name="twitter:creator" content="@pixel_emii" />
+
+      {/* --- Structured Data --- */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "PixelEmii",
+            alternateName: "Pixel Emii",
+            url: "https://www.pixelemii.com/",
+            image: "https://www.pixelemii.com/ogpixelcafe.png",
+            jobTitle: "VTuber & Streamer",
+            description:
+              "Glitch bunny VTuber streaming variety games with surreal humor and cozy chaos at the Byte & Brew Café.",
+            sameAs: [
+              "https://twitch.tv/pixelemii",
+              "https://youtube.com/@pixelemii",
+              "https://twitter.com/pixel_emii",
+              "https://www.instagram.com/pixelemii",
+              "https://bsky.app/profile/pixelemii.bsky.social",
+              "https://discord.gg/yourinvite",
+            ],
+          }),
+        }}
+      />
+    </Head>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-3KGBJQ48CZ"
         strategy="afterInteractive"
