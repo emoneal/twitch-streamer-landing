@@ -275,7 +275,7 @@ export default function Home() {
               <div className="aspect-video w-full">
                 <iframe
                   className="h-full w-full"
-                  src="https://player.twitch.tv/?channel=pixelemii&parent=localhost&muted=true"
+                  src="https://player.twitch.tv/?channel=pixelemii&parent=pixelemii.com&muted=true"
                   allow="autoplay; fullscreen"
                   title="Twitch Player"
                 />
