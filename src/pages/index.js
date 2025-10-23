@@ -290,7 +290,7 @@ export default function Home() {
         <section id="music" className="border-y border-white/10 bg-gradient-to-r from-fuchsia-900/20 via-black/30 to-fuchsia-900/20">
             <div className="mx-auto max-w-6xl px-4 py-14 grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                <h2 className="text-2xl md:text-3xl font-bold">New single: "Comfort Loop"</h2>
+                <h2 className="text-2xl md:text-3xl font-bold">New single: &quot;Comfort Loop&quot;</h2>
                 <p className="text-white/80 mt-2">Cute-core meets lo-fi rain vibes. Stream it everywhere.</p>
                 <div className="mt-4 flex gap-3">
                     <a href="https://youtube.com/shorts/_gbR0R-sIgA" target="_blank" rel="noreferrer"
@@ -332,7 +332,7 @@ export default function Home() {
                     <li>Community : The Backenders</li>
                     <li>Art Tag : #PixelSketches</li>
                     <li>NSFW Tag : #NSFWEmii</li>
-                    <li>Motto : “I’m already in your backend.”</li>
+                    <li>Motto : &quot;I’m already in your backend.&quot;</li>
                 </ul>
                 </div>
             </div>
