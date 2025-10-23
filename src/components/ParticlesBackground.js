@@ -1,96 +1,61 @@
 'use client';
+import React, { useCallback } from 'react';
+import Particles from 'react-tsparticles';
+import { loadSlim } from 'tsparticles-slim';
 
-import { useEffect } from 'react';
-
-const ParticlesBackground = () => {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Dynamically import particles.js client-side
-      import('particles.js').then(() => {
-        // Initialize particles.js using the correct method
-        window.particlesJS('particles-js', {
-          particles: {
-            number: {
-              value: 80, // Number of particles
-              density: {
-                enable: true,
-                value_area: 800
-              }
-            },
-            color: {
-              value: '#00ff00', // Particle color (neon green)
-            },
-            shape: {
-              type: 'circle', // Shape of particles
-              stroke: {
-                width: 0,
-                color: '#000000'
-              }
-            },
-            opacity: {
-              value: 0.5,
-              random: true,
-              anim: {
-                enable: true,
-                speed: 1,
-                opacity_min: 0.1,
-                sync: false
-              }
-            },
-            size: {
-              value: 3, // Size of particles
-              random: true,
-              anim: {
-                enable: true,
-                speed: 5,
-                size_min: 0.1,
-                sync: false
-              }
-            },
-            move: {
-              enable: true,
-              speed: 1,
-              direction: 'none',
-              random: true,
-              straight: false,
-              out_mode: 'out',
-              bounce: false
-            }
-          },
-          interactivity: {
-            detect_on: 'canvas',
-            events: {
-              onhover: {
-                enable: true,
-                mode: 'attract', // Hover effect: Attract particles towards the cursor
-              },
-              onclick: {
-                enable: true,
-                mode: 'push', // Click effect: Push particles outward on click
-              },
-            },
-            modes: {
-              attract: {
-                // Attract particles to the cursor
-                distance: 100, // Distance of attraction
-                duration: 0.4, // Duration of attraction
-              },
-              push: {
-                particles_nb: 6, // Number of particles to create on click
-              },
-            },
-          },
-          retina_detect: true, // Enable retina resolution support
-        });
-      });
-    }
+export default function ParticlesBackground() {
+  const init = useCallback(async (engine) => {
+    await loadSlim(engine);
   }, []);
 
-  return <div
-  id="particles-js"
-  className="fixed top-0 left-0 w-full h-full -z-10"
-/>;
+  return (
+    <>
+      {/* glow */}
+      <div
+        className="pointer-events-none fixed inset-0 -z-10 
+                   bg-[radial-gradient(ellipse_at_top,_rgba(231,159,195,0.12),transparent_60%), 
+                   radial-gradient(ellipse_at_bottom,_rgba(147,197,253,0.10),transparent_60%)]"
+      />
 
-};
-
-export default ParticlesBackground;
+      <Particles
+        id="tsparticles"
+        init={init}
+        style={{ pointerEvents: 'none' }}          // allow page clicks to pass through
+        className="fixed inset-0 -z-10 pointer-events-none"        
+        options={{
+          fullScreen: { enable: true, zIndex: -1 },
+          background: { color: '#0b0a10' },
+          fpsLimit: 60,
+          detectRetina: true,
+          interactivity: {
+            detectsOn: 'window',                   // listen on window, not canvas
+            events: {
+              onHover: { enable: true, mode: 'slow' },
+              onClick: { enable: true, mode: 'push' }, // now clicks spawn particles
+              resize: true,
+            },
+            modes: {
+              slow: { factor: 2, radius: 120 },
+              push: { quantity: 5 },
+            },
+          },
+          particles: {
+            number: { value: 60, density: { enable: true, area: 900 } },
+            color: { value: ['#E79FC3', '#F5C2E7', '#CBA6F7', '#BDE0FE'] },
+            shape: { type: ['heart', 'circle', 'star'] },
+            opacity: { value: { min: 0.3, max: 0.7 } },
+            size: { value: { min: 2, max: 6 } },
+            move: {
+              enable: true,
+              speed: { min: 0.2, max: 0.8 },
+              direction: 'none',
+              outModes: 'out',
+            },
+            tilt: { enable: true, value: { min: 0, max: 360 }, direction: 'random' },
+            zIndex: { value: { min: 0, max: 1 } },
+          },
+        }}
+      />
+    </>
+  );
+}
