@@ -5,11 +5,11 @@ import moment from 'moment-timezone';
 // Your schedule (America/New_York). Only the *start* time matters for the timer.
 const SCHEDULE = [
   { day: 'Monday',    time: 'OFF' },
-  { day: 'Tuesday',   time: 'OFF' },
-  { day: 'Wednesday', time: '17:00 - 21:00' },
+  { day: 'Tuesday',   time: '17:00 - 21:00' },
+  { day: 'Wednesday', time: 'OFF' },
   { day: 'Thursday',  time: 'OFF' },
-  { day: 'Friday',    time: 'OFF' },
-  { day: 'Saturday',  time: '17:00 - 21:00' },
+  { day: 'Friday',    time: '17:00 - 21:00' },
+  { day: 'Saturday',  time: 'OFF' },
   { day: 'Sunday',    time: '17:00 - 21:00' },
 ];
 
@@ -60,7 +60,7 @@ export default function NextStreamTimer() {
         <div className="mt-1 inline-flex gap-2 rounded-xl bg-black/40 border border-white/10 px-3 py-2">
           <span>--d</span><span>--h</span><span>--m</span><span>--s</span>
         </div>
-        <div className="text-xs opacity-70 mt-1">Wed • Sat • Sun @ 5:00 PM ET</div>
+        <div className="text-xs opacity-70 mt-1">Tues • Fri • Sun @ 5:00 PM EST</div>
       </div>
     );
   }
@@ -86,7 +86,7 @@ export default function NextStreamTimer() {
         <span className="tabular-nums">{mins}m</span>
         <span className="tabular-nums">{secs}s</span>
       </div>
-      <div className="text-xs opacity-70 mt-1">Wed • Sat • Sun @ 5:00 PM ET</div>
+      <div className="text-xs opacity-70 mt-1">Tues • Fri • Sun @ 5:00 PM EST</div>
     </div>
   );
   

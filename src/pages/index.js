@@ -263,7 +263,7 @@ export default function Home() {
               <ul className="space-y-1 text-white/80 text-sm">
                 <li>Tue • 7:00 PM EST — Variety / VTuber chaos</li>
                 <li>Fri • 7:00 PM EST — Story games / weirdcore</li>
-                <li>Sat • 7:00 PM EST — Community & comfy</li>
+                <li>Sun • 7:00 PM EST — Community & comfy time</li>
               </ul>
 
               <p className="text-xs text-white/50 mt-3">*Times may glitch. Best alerts on Discord.</p>
